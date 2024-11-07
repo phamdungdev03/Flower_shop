@@ -4,7 +4,7 @@ include(__DIR__ . '/../../config/database.php');
 function getAllContacts()
 {
     $conn = getConnection();
-    $sql = "SELECT c.contact_id, u.full_name, c.email, c.phone_number, c.created_at, c.message FROM contact as c JOIN users as u where c.user_id = u.user_id";
+    $sql = "SELECT c.contact_id, u.full_name, u.email, u.phone_number, c.contact_date, c.message FROM contacts as c JOIN accounts as u where c.account_id = u.account_id";
     $result = $conn->query($sql);
     return $result;
 }

@@ -1,6 +1,6 @@
 <?php
-include('../includes/order_function.php');
-include('../includes/product_function.php');
+include('../functions/order_function.php');
+include('../functions/product_function.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'];
     switch ($action) {
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     }
                 }
-                header("Location: ../indexadmin.php?id=10");
+                header("Location: ../index.php?id=10");
                 exit();
             } else {
                 echo "Lỗi khi cập nhật đơn hàng";

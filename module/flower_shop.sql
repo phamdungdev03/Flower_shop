@@ -65,10 +65,8 @@ CREATE TABLE order_items (
 CREATE TABLE contacts (
     contact_id INT PRIMARY KEY AUTO_INCREMENT,
     account_id INT,
-    subject VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,
     contact_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(50) DEFAULT 'pending',
     FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );
 -- Tạo bảng cart (Giỏ hàng)

@@ -4,7 +4,7 @@ include(__DIR__ . '/../../config/database.php');
 function getAllOrders()
 {
     $conn = getConnection();
-    $sql = "SELECT o.order_id, o.order_date, o.total_amount, o.status, u.full_name FROM orders as o JOIN users as u where o.user_id = u.user_id";
+    $sql = "SELECT o.order_id, o.order_date, o.total_price, o.status, u.full_name FROM orders as o JOIN accounts as u where o.account_id = u.account_id";
     $result = $conn->query($sql);
     return $result;
 }
@@ -12,7 +12,7 @@ function getAllOrders()
 function getOrderByOderId($orderId)
 {
     $conn = getConnection();
-    $sql = "SELECT o.order_id, o.order_date, o.total_amount, o.status, u.full_name FROM orders as o JOIN users as u where o.user_id = u.user_id AND order_id = ?";
+    $sql = "SELECT o.order_id, o.order_date, o.total_price, o.status, u.full_name FROM orders as o JOIN accounts as u where o.account_id = u.account_id AND order_id = ?";
     $st = $conn->prepare($sql);
     $st->bind_param("s", $orderId);
     $st->execute();
@@ -25,7 +25,7 @@ function getOrderByOderId($orderId)
 
 function getAllOrderItemByOrderId($orderId){
     $conn = getConnection();
-    $sql = "SELECT ot.product_id, ot.price, ot.quantity, p.product_name, p.image_url FROM order_items as ot JOIN products as p where ot.product_id = p.product_id AND order_id = $orderId";
+    $sql = "SELECT ot.product_id, ot.price, ot.quantity, p.product_name, p.default_image FROM order_items as ot JOIN products as p where ot.product_id = p.product_id AND order_id = $orderId";
     $result = $conn->query($sql);
     return $result;
 }
