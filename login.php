@@ -1,29 +1,49 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập - Web bán hoa</title>
-    <link rel="stylesheet" href="login.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
+  <div class="container">
+    <div class="login-box">
+      <h2>Đăng Nhập</h2>
+      <p>Nhập thông tin đăng nhập của bạn để truy cập tài khoản của bạn</p>
+      
+      <form action="#" method="POST">
+      <label for="username">Tên Đăng Nhập</label>
+      <input type="text" id="username" name="username" placeholder="Enter your user name" required>
+        
+        <label for="password">Mật Khẩu</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        
+        <div class="options">
+          
+          <a href="#">Quên Mật Khẩu?</a>
+        </div>
+        
+        <button type="submit" class="login-btn">Đăng Nhập</button>
+      </form>
+      
+      <div class="or">or</div>
+      
+      <div class="social-login">
+        <button class="google-btn">Sign in with Google</button>
+        <button class="apple-btn">Sign in with Apple</button>
+      </div>
+      
+      <p class="signup">Bạn chưa có tài khoản? <a href="signup.php">Đăng Ký</a></p>
+    </div>
     
+    <div class="image-box"> 
+      <img src="hinh-nen-hoa.jpg.webp" alt="Plant">
+    </div>
+  </div>
+</body>
+</html>
 
-    <?php if (isset($error)): ?>
-        <p style="color: red;"><?php echo $error; ?></p>
-    <?php endif; ?>
-
-    <form method="post" action="login.php">
-    <h2>Đăng nhập</h2>
-        <label for="username">Tên đăng nhập:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
-        
-        <label for="password">Mật khẩu:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        
-        <button type="submit">Đăng nhập</button>
-    </form>
     <?php
 // Bắt đầu session
 session_start();

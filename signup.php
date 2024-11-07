@@ -1,34 +1,56 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký - Web bán hoa</title>
-    <link rel="stylesheet" href="signup.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Page</title>
+  <link rel="stylesheet" href="signup.css">
 </head>
 <body>
+  <div class="container">
+    <div class="sign-box">
+      <h2>Đăng Ký</h2>
+      
+      <form action="#" method="POST">
+        <label for="acccoutname">Tên Tài Khoản </label>
+        <input type="text" id="acccoutname" name="acccoutname" placeholder="Enter your acccout name" required>
 
-    <?php if (isset($error)): ?>
-        <p style="color: red;"><?php echo $error; ?></p>
-    <?php endif; ?>
+        <label for="username">Tên Đăng Nhập</label>
+        <input type="text" id="username" name="username" placeholder="Enter your user name" required>
 
-    <form method="post" action="signup.php">
-    <h2>Đăng ký tài khoản</h2>
+        <label for="phonenumber">Số Điện Thoại</label>
+        <input type="number" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" required>
 
-        <label for="username">Tên đăng nhập:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
         
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Mật Khẩu</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <label for="re-enterpassword">Nhập Lại Mật Khẩu</label>
+        <input type="password" id="re-enterpassword" name="re-enterpassword" placeholder="Enter your Re-enter password" required>
         
-        <label for="password">Mật khẩu:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
+       
         
-        <label for="confirm_password">Xác nhận mật khẩu:</label><br>
-        <input type="password" id="confirm_password" name="confirm_password" required><br><br>
-        
-        <button type="submit">Đăng ký</button>
-    </form>
+        <button type="submit" class="sign-btn">Đăng Ký</button>
+      </form>
+      
+      <div class="or">or</div>
+      
+      <div class="social-sign">
+        <button class="google-btn">Sign in with Google</button>
+        <button class="apple-btn">Sign in with Apple</button>
+      </div>
+      
+      <p class="signup">Đã Có Tài Khoản? <a href="login.php">Đăng Nhập</a></p>
+    </div>
+    
+    <div class="image-box"> 
+      <img src="hoa.jpg" alt="Plant">
+    </div>
+  </div>
+</body>
+</html>
     <?php
 // Bắt đầu session
 session_start();
