@@ -29,7 +29,9 @@
         <!-- Sidebar và Wrapper -->
         <div class="section-content">
             <div class="container_sidebar">
-                <?php include("./layout/component/sidebar.php"); ?>
+                <?php if (!($id == "3")) {
+                    include("./layout/component/sidebar.php");
+                }  ?>
             </div>
             <div class="content">
                 <?php include "$page"; ?>

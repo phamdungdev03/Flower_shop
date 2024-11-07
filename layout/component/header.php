@@ -5,9 +5,23 @@
         <div class="header-top">
             <h2 class="header_top-title">Hotline: 0352718888 | Email: shop@gmail.com</h2>
             <ul class="top-menu">
-                <li><a href="./index.php?id=4">Tài khoản</a></li>
-                <li><a href="#">Chính sách bảo mật</a></li>
-                <li><a href="./login.php">Đăng nhập</a></li>
+                <?php
+                session_start();
+                if (isset($_SESSION['username'])) {
+                    echo "
+                            <li><a href='./index.php?id=4' class='name_user'>{$_SESSION['username']}</a></li>
+                            <li><a href='#'>Chính sách bảo mật</a></li>
+                            <li><a href='#'>Đơn hàng</a></li>
+                            <li><a href='./login.php'>Đăng xuất</a></li>
+                        ";
+                } else {
+                    echo " 
+                            <li><a href='./index.php?id=4'>Tài khoản</a></li>
+                            <li><a href='#'>Chính sách bảo mật</a></li>
+                            <li><a href='./login.php'>Đăng nhập</a></li>
+                        ";
+                }
+                ?>
             </ul>
         </div>
     </div>

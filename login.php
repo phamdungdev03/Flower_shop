@@ -16,7 +16,7 @@
         <p>Nhập thông tin đăng nhập của bạn để truy cập tài khoản và bắt đầu trải nghiệm web của chúng tôi</p>
       </div>
 
-      <form action="#" method="POST">
+      <form action="./actions/handle_login.php" method="POST">
         <div class="box_items">
           <label for="username" class="label">Tên dăng nhập</label>
           <input type="text" id="username" name="username" class="input" placeholder="John" required />
@@ -24,14 +24,14 @@
 
         <div class="box_items">
           <label for="password" class="label">Mật khẩu</label>
-          <input type="text" id="password" name="password" class="input" placeholder="*******" required />
+          <input type="password" id="password" name="password" class="input" placeholder="*******" required />
         </div>
 
         <div class="options">
           <a href="#">Quên Mật Khẩu?</a>
         </div>
 
-        <button type="submit" class="login-btn">Đăng Nhập</button>
+        <button type="submit" name="btn_submit" class="login-btn">Đăng Nhập</button>
       </form>
 
       <div class="or">or</div>

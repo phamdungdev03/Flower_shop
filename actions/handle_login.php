@@ -4,7 +4,7 @@ include("../config/database.php");
 if (isset($_POST["btn_submit"])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $sql = "SELECT * FROM accounts WHERE user_name = '$username'";
     $conn = getConnection();
     $result = mysqli_query($conn, $sql);
 
@@ -12,7 +12,7 @@ if (isset($_POST["btn_submit"])) {
         $user = mysqli_fetch_assoc($result);
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['user_id'];
-            $_SESSION['username'] = $user['username'];
+            $_SESSION['username'] = $user['user_name'];
             $_SESSION['role_name'] = $user['role_name'];
             if ($user["role_name"] == "admin") {
                 header("Location: ../admin");

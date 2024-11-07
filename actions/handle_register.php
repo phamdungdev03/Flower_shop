@@ -3,7 +3,7 @@ include("../config/database.php");
 
 if (isset($_POST["btn_submit"]) && ($_POST["password"] == $_POST["confirm_password"])) {
     $username = $_POST["username"];
-    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $sql = "SELECT * FROM accounts WHERE user_name = '$username'";
     $conn = getConnection();
     $result = mysqli_query($conn, $sql);
 
@@ -16,10 +16,9 @@ if (isset($_POST["btn_submit"]) && ($_POST["password"] == $_POST["confirm_passwo
         $phone_number = $_POST["phone"];
         $password = $_POST["password"];
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $role = "user";
-        $sql2 = "INSERT INTO `users` (`full_name`, `username`, `email`, `phone_number`, `address`, `password`, `role_name`)
+        $role = "0";
+        $sql2 = "INSERT INTO `accounts` (`full_name`, `user_name`, `email`, `phone_number`, `address`, `password`, `is_admin`)
                  VALUES ('$fullname', '$username', '$email', '$phone_number', '$address', '$hashed_password', '$role')";
-
         if (mysqli_query($conn, $sql2)) {
             echo "<script>alert('Đăng ký thành công!');
                   window.location.href = '../login.php';
