@@ -2,7 +2,7 @@
 
 <section class="contact-form">
     <h2>Liên hệ với chúng tôi</h2>
-    <form action="process_contact.php" method="POST">
+    <form action="./actions/handle_contact.php" method="POST">
         <div class="form-group">
             <label for="name">Họ và Tên:</label>
             <input type="text" id="name" name="name" required>

@@ -65,6 +65,9 @@ CREATE TABLE order_items (
 CREATE TABLE contacts (
     contact_id INT PRIMARY KEY AUTO_INCREMENT,
     account_id INT,
+    contact_name VARCHAR(50),
+    contact_email VARCHAR(50),
+    contact_phone VARCHAR(50),
     message TEXT NOT NULL,
     contact_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (account_id) REFERENCES accounts(account_id)
