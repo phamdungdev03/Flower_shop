@@ -13,13 +13,13 @@
             "2" => "./categories/addCategory.php",
             "3" => "./categories/editCategory.php",
             "4" => "./products/index.php",
-            "5" => "./products/createProduct.php",
+            "5" => "./products/addProduct.php",
             "6" => "./products/editProduct.php",
             "7" => "./accounts/index.php",
-            "8" => "./accounts/createAccount.php",
+            "8" => "./accounts/addAccount.php",
             "9" => "./accounts/editAccount.php",
-            "10" => "./order/index.php",
-            "11" => "./order/editOrder.php",
+            "10" => "./orders/index.php",
+            "11" => "./orders/editOrder.php",
             "12" => "./contacts/index.php",
         ];
         $id = $_GET["id"] ?? null;

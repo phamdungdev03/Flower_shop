@@ -20,8 +20,8 @@ CREATE TABLE categories (
 CREATE TABLE products (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
     product_name VARCHAR(255) NOT NULL,
-    product_price DECIMAL(10, 2) NOT NULL,
-    sale_price DECIMAL(10, 2) NOT NULL,
+    product_price FLOAT NOT NULL,
+    sale_price FLOAT NOT NULL,
     category_id INT,
     product_detail TEXT,
     default_image VARCHAR(255),
@@ -97,6 +97,14 @@ CREATE TABLE reviews (
     rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
     comment TEXT,
     review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account_id) REFERENCES accounts(account_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+CREATE TABLE wishlists (
+    wishlist_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    account_id INT NOT NULL,
     FOREIGN KEY (account_id) REFERENCES accounts(account_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
