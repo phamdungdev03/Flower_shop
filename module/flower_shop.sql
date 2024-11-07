@@ -7,30 +7,25 @@ DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS contacts;
 DROP TABLE IF EXISTS order_items;
 DROP TABLE IF EXISTS reviews;
-DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS accounts;
 DROP TABLE IF EXISTS categories;
-DROP TABLE IF EXISTS site_content;
 -- Tạo bảng categories (Loại sản phẩm)
 CREATE TABLE categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
-    category_name VARCHAR(255) NOT NULL,
+    category_name VARCHAR(255) NOT NULL
 );
 -- Tạo bảng products (Danh sách sản phẩm)
 CREATE TABLE products (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
     product_name VARCHAR(255) NOT NULL,
     product_price DECIMAL(10, 2) NOT NULL,
+    sale_price DECIMAL(10, 2) NOT NULL,
     category_id INT,
-    rating_star FLOAT DEFAULT 0 CHECK (
-        rating_star BETWEEN 0 AND 5
-    ),
-    product_info TEXT,
     product_detail TEXT,
     default_image VARCHAR(255),
-    stock_quantity INT DEFAULT 0 CHECK (stock_quantity >= 0),
+    quantity INT DEFAULT 0 CHECK (quantity >= 0),
     is_new TINYINT(1) DEFAULT 0,
     is_best_seller TINYINT(1) DEFAULT 0,
     is_discount TINYINT(1) DEFAULT 0,
@@ -92,5 +87,16 @@ CREATE TABLE cart_items (
     quantity INT NOT NULL DEFAULT 1 CHECK (quantity > 0),
     price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (cart_id) REFERENCES cart(cart_id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+CREATE TABLE reviews (
+    review_id INT AUTO_INCREMENT PRIMARY KEY,
+    account_id INT NOT NULL,
+    product_id INT NOT NULL,
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    comment TEXT,
+    review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account_id) REFERENCES accounts(account_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
