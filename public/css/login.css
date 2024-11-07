@@ -109,24 +109,6 @@
     background-color: #45a049;
   }
   
-  .or {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #333;
-    font-weight: bold;
-    margin-top: 20px;
-  }
-  
-  .or::before,
-  .or::after {
-    content: "";
-    flex: 1;
-    border-top: 1px solid #ccc;
-    margin: 0 10px;
-  }
-  
-  
   .social-login {
     display: flex;
     justify-content: space-between;

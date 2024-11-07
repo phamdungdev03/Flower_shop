@@ -1,32 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flower_Shop</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-    <header class="header">
-        <div class="logo">
-            <h1><span class="logo-part1">FLOWER</span><span class="logo-part2">SHOP</span></h1>
-        </div>
-        <nav class="nav">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Elements</a></li>
-                <li><a href="logout.php">LogOut</a></li>
-            </ul>
-        </nav>
-        <div class="cart">
-            <a href="#">Cart (0)</a>
-        </div>
-    </header>
-    
+    <?php
+    include("./layout/component/header.php");
+    ?>
 </body>
+
 </html>
