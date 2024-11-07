@@ -1,7 +1,6 @@
 -- Tạo cơ sở dữ liệu nếu chưa tồn tại
 CREATE DATABASE IF NOT EXISTS flower_shop;
 USE flower_shop;
-
 -- Xóa các bảng nếu tồn tại
 DROP TABLE IF EXISTS cart_items;
 DROP TABLE IF EXISTS cart;
@@ -14,20 +13,20 @@ DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS accounts;
 DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS site_content;
-
 -- Tạo bảng categories (Loại sản phẩm)
 CREATE TABLE categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(255) NOT NULL,
 );
-
 -- Tạo bảng products (Danh sách sản phẩm)
 CREATE TABLE products (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
     product_name VARCHAR(255) NOT NULL,
     product_price DECIMAL(10, 2) NOT NULL,
     category_id INT,
-    rating_star FLOAT DEFAULT 0 CHECK (rating_star BETWEEN 0 AND 5),
+    rating_star FLOAT DEFAULT 0 CHECK (
+        rating_star BETWEEN 0 AND 5
+    ),
     product_info TEXT,
     product_detail TEXT,
     default_image VARCHAR(255),
@@ -37,7 +36,6 @@ CREATE TABLE products (
     is_discount TINYINT(1) DEFAULT 0,
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
-
 -- Tạo bảng accounts (Tài khoản người dùng)
 CREATE TABLE accounts (
     account_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -49,7 +47,6 @@ CREATE TABLE accounts (
     address TEXT,
     is_admin TINYINT(1) DEFAULT 0 -- Cột phân quyền
 );
-
 -- Tạo bảng orders (Đơn hàng)
 CREATE TABLE orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -59,7 +56,6 @@ CREATE TABLE orders (
     total_price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );
-
 -- Tạo bảng order_items (Chi tiết đơn hàng)
 CREATE TABLE order_items (
     order_item_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -70,7 +66,6 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
-
 -- Tạo bảng contacts (Tin nhắn liên hệ)
 CREATE TABLE contacts (
     contact_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -81,7 +76,6 @@ CREATE TABLE contacts (
     status VARCHAR(50) DEFAULT 'pending',
     FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );
-
 -- Tạo bảng cart (Giỏ hàng)
 CREATE TABLE cart (
     cart_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -90,7 +84,6 @@ CREATE TABLE cart (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );
-
 -- Tạo bảng cart_items (Chi tiết sản phẩm trong giỏ hàng)
 CREATE TABLE cart_items (
     cart_item_id INT PRIMARY KEY AUTO_INCREMENT,
