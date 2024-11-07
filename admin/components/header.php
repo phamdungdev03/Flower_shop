@@ -9,9 +9,19 @@
             </div>
             <ul class="navbar-nav d-flex align-items-center  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                    <a href="#" class="nav-link text-body font-weight-bold px-0">
-                        <i class="material-symbols-rounded">account_circle</i>
-                    </a>
+                    <?php
+                    if (isset($_SESSION['user_name'])) {
+                        $userName = $_SESSION['user_name'];
+                    ?>
+                        <div class="d-flex flex-column align-items-center">
+                            <i class='material-symbols-rounded'>account_circle</i>
+                            <span class='text-xs text-center text-uppercase font-weight-bolder'><?php echo $userName ?></span>
+                        </div>
+                    <?php
+                    } else {
+                        echo "<i class='material-symbols-rounded'>account_circle</i>";
+                    }
+                    ?>
                 </li>
             </ul>
         </div>

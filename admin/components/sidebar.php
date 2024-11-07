@@ -54,7 +54,7 @@
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
         <div class="mx-3">
-            <a class="btn bg-gradient-dark w-100" href="#" type="button">Đăng Xuất</a>
+            <a class="btn bg-gradient-dark w-100" href="../logout.php" type="button">Đăng Xuất</a>
         </div>
     </div>
 </aside>
