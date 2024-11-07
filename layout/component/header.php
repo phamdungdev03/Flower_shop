@@ -5,9 +5,9 @@
         <div class="header-top">
             <h2 class="header_top-title">Hotline: 0352718888 | Email: shop@gmail.com</h2>
             <ul class="top-menu">
-                <li><a href="#">Tài khoản</a></li>
+                <li><a href="./index.php?id=4">Tài khoản</a></li>
                 <li><a href="#">Chính sách bảo mật</a></li>
-                <li><a href="#">Đăng nhập</a></li>
+                <li><a href="./login.php">Đăng nhập</a></li>
             </ul>
         </div>
     </div>
@@ -18,7 +18,7 @@
     $path = str_replace(basename($scriptName), '', $scriptName);
 
     $base_url = $protocol . $host . $path;
-    $base_url = rtrim($base_url, '/page');
+    $base_url = rtrim($base_url, '/');
     ?>
 
     <!-- Content Section -->
@@ -60,10 +60,10 @@
         <div class="header-bottom">
             <ul>
                 <li><a href="<?php echo $base_url; ?>/index.php">Trang chủ</a></li>
-                <li><a href="<?php echo $base_url; ?>/page/contact.php">Giới thiệu</a></li>
-                <li><a href="<?php echo $base_url; ?>/page/products.php">Sản phẩm</a></li>
-                <li><a href="<?php echo $base_url; ?>/page/contact.php">Liên hệ</a></li>
-                <li><a href="<?php echo $base_url; ?>/page/products.php">Tin tức</a></li>
+                <li><a href="<?php echo $base_url; ?>/index.php">Giới thiệu</a></li>
+                <li><a href="<?php echo $base_url; ?>/index.php?id=2">Sản phẩm</a></li>
+                <li><a href="<?php echo $base_url; ?>/index.php?id=3">Liên hệ</a></li>
+                <li><a href="<?php echo $base_url; ?>/index.php?">Tin tức</a></li>
             </ul>
         </div>
     </div>

@@ -18,13 +18,13 @@
 
       <form action="#" method="POST">
         <div class="box_items">
-          <label for="first_name" class="label">Tên dăng nhập</label>
-          <input type="text" id="first_name" class="input" placeholder="John" required />
+          <label for="username" class="label">Tên dăng nhập</label>
+          <input type="text" id="username" name="username" class="input" placeholder="John" required />
         </div>
 
         <div class="box_items">
-          <label for="first_name" class="label">Mật khẩu</label>
-          <input type="text" id="first_name" class="input" placeholder="*******" required />
+          <label for="password" class="label">Mật khẩu</label>
+          <input type="text" id="password" name="password" class="input" placeholder="*******" required />
         </div>
 
         <div class="options">

@@ -15,43 +15,39 @@
         <h2>Tạo Tài Khoản</h2>
         <p>Vui lòng điền đầy đủ thông tin để tạo tài khoản mới và bắt đầu trải nghiệm các tính năng của chúng tôi.</p>
       </div>
-
-
-
-      <form>
+      <form method="POST" action="./actions/handle_register.php">
         <div class="form-grid">
           <div>
             <label for="full_name">Tên tài khoản</label>
-            <input type="text" id="full_name" placeholder="John" required />
+            <input type="text" id="fullname" name="fullname" placeholder="John" required />
           </div>
           <div>
             <label for="user_name">Tên đăng nhập</label>
-            <input type="text" id="user_name" placeholder="Doe" required />
+            <input type="text" id="username" name="username" placeholder="Doe" required />
           </div>
           <div>
             <label for="address">Địa chỉ</label>
-            <input type="text" id="address" placeholder="Flowbite" required />
+            <input type="text" id="address" name="address" placeholder="Flowbite" required />
           </div>
           <div>
             <label for="phone">Số điện thoại</label>
-            <input type="tel" id="phone" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required />
+            <input type="tel" id="phone" name="phone" placeholder="123-45-678" required />
           </div>
         </div>
         <div class="input-wrapper">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="john.doe@address.com" required />
+          <input type="email" id="email" name="email" placeholder="john.doe@address.com" required />
         </div>
         <div class="input-wrapper">
           <label for="password">Mật khẩu</label>
-          <input type="password" id="password" placeholder="•••••••••" required />
+          <input type="password" id="password" name="password" placeholder="•••••••••" required />
         </div>
         <div class="input-wrapper">
           <label for="confirm_password">Nhập lại mật khẩu</label>
-          <input type="password" id="confirm_password" placeholder="•••••••••" required />
+          <input type="password" id="confirm_password" name="confirm_password" placeholder="•••••••••" required />
         </div>
-        <button class="btn_submit" type="submit">Đăng ký</button>
+        <button class="btn_submit" name="btn_submit" type="submit">Đăng ký</button>
       </form>
-
 
       <div class="or">or</div>
 
@@ -62,9 +58,7 @@
       <img src="./public/img/image_sign-up.jpg" alt="Plant">
     </div>
   </div>
-</body>
-
-</html>
+  <script src="./public/js/register.js"></script>
 </body>
 
 </html>

@@ -9,7 +9,7 @@
 }
 
 .header-top {
-    max-width:1080px;
+    max-width:1250px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -61,7 +61,7 @@
     justify-content: space-between;
     padding: 20px;
     background-color: #fff;
-    max-width: 1080px;
+    max-width: 1250px;
     margin: 0 auto;
     border-bottom: 1px solid #ddd;
 }
@@ -213,7 +213,7 @@
 
 .header-bottom {
     margin: 0 auto;
-    max-width: 1080px;
+    max-width: 1250px;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -236,11 +236,11 @@
 
 .header-bottom li a {
     text-decoration: none;
-    color:hsl(0deg 0% 40% / 85%);
+    color: hsl(0deg 0% 40% / 85%);
 }
 
-.header-bottom li:hover {
-    color: #B17010;
+.header-bottom li a:hover {
+    color: #000;
 }
 
 /* css search */
