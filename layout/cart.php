@@ -8,10 +8,10 @@ $scriptName = $_SERVER['SCRIPT_NAME'];
 $path = str_replace(basename($scriptName), '', $scriptName);
 
 $base_url = $protocol . $host . $path;
-$base_url = rtrim($base_url, '/');
+$base_url = rtrim($base_url, '/layout');
 
-include "$base_url/actions/handle_cart.php";
-include "$base_url/actions/handle_order.php";
+include "./actions/handle_cart.php";
+include "./actions/handle_order.php";
 if (isset($_SESSION['user_id'])) {
     $error = false;
     $success = false;
@@ -231,7 +231,7 @@ if (isset($_SESSION['user_id'])) {
 } else {
     echo " <div class='popup' id='popup'>
         <div class='popup-content'>
-            <p>Bạn không thể thêm hoặc vào giỏ hàng vì chưa đăng nhập. Vui lòng đăng nhập tại đây.<a href='../login.php'> Đăng nhập</a>.</p>
+            <p>Bạn không thể thêm hoặc vào giỏ hàng vì chưa đăng nhập. Vui lòng đăng nhập tại đây.<a href='$base_url/login.php'> Đăng nhập</a>.</p>
         </div>
     </div>";
 }

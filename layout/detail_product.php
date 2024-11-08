@@ -1,15 +1,8 @@
 <link rel="stylesheet" href="./public/css/detail_product.css">
 
 <?php
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-$host = $_SERVER['HTTP_HOST'];
-$scriptName = $_SERVER['SCRIPT_NAME'];
-$path = str_replace(basename($scriptName), '', $scriptName);
-
-$base_url = $protocol . $host . $path;
-$base_url = rtrim($base_url, '/');
-
 include("./config/database.php");
+
 $product_id = $_GET["product_id"];
 $sql = "SELECT * From `products` where product_id = $product_id";
 $conn = getConnection();
@@ -100,8 +93,12 @@ if ($category_id) {
                 $product_image = $row["default_image"];
                 $product_price = $row["product_price"];
                 $product_sale = $row["sale_price"];
-                $format_price = number_format($product_sale, 0, ",", ".");
-                include("{$base_url}/layout/component/product.php");
+                $is_new = $row["is_new"];
+                $is_best_seller = $row["is_best_seller"];
+                $is_discount = $row["is_discount"];
+                $format_price = number_format($product_price, 0, ",", ".");
+                $product_price_sale = number_format($product_sale, 0, ",", ".");
+                include("./layout/component/product.php");
             }
         } else {
             echo "<p>Không có sản phẩm nào.</p>";

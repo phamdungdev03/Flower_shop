@@ -20,7 +20,7 @@
 
         <div class="form-group">
             <label for="message">Nội Dung Tin Nhắn:</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <textarea id="message" name="message" rows="3" required></textarea>
         </div>
 
         <button type="submit" class="submit-button">Gửi Tin Nhắn</button>

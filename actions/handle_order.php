@@ -8,7 +8,7 @@ $path = str_replace(basename($scriptName), '', $scriptName);
 $base_url = $protocol . $host . $path;
 $base_url = rtrim($base_url, '/');
 
-include("$base_url/config/database.php");
+include("./config/database.php");
 
 function getCartByUserId($userId)
 {
@@ -70,4 +70,20 @@ function getTotalAmount($cartItemId)
         }
     }
     return $total;
+}
+
+function getOrderById($orderId)
+{
+    $conn = getConnection();
+    $sql = "SELECT o.*, a.* FROM orders as o JOIN accounts as a ON o.account_id = a.account_id WHERE order_id = $orderId";
+    $result = $conn->query($sql);
+    return $result;
+}
+
+function getOrderItemByOrderId($orderId)
+{
+    $conn = getConnection();
+    $sql = "SELECT ot.quantity, ot.price,ot.product_id, p.product_name, p.default_image FROM order_items as ot JOIN products as p ON ot.product_id = p.product_id WHERE order_id = $orderId";
+    $result = $conn->query($sql);
+    return $result;
 }

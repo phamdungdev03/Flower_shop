@@ -11,7 +11,7 @@
                     echo "
                             <li><a href='./index.php?id=4' class='name_user'>{$_SESSION['username']}</a></li>
                             <li><a href='#'>Chính sách bảo mật</a></li>
-                            <li><a href='#'>Đơn hàng</a></li>
+                            <li><a href='./index.php?id=6'>Đơn hàng</a></li>
                             <li><a href='./login.php'>Đăng xuất</a></li>
                         ";
                 } else {
@@ -75,7 +75,7 @@
             <ul>
                 <li><a href="<?php echo $base_url; ?>/index.php">Trang chủ</a></li>
                 <li><a href="<?php echo $base_url; ?>/index.php">Giới thiệu</a></li>
-                <li><a href="<?php echo $base_url; ?>/index.php?id=2&category_id=1">Sản phẩm</a></li>
+                <li><a href="<?php echo $base_url; ?>/index.php?id=2">Sản phẩm</a></li>
                 <li><a href="<?php echo $base_url; ?>/index.php?id=3">Liên hệ</a></li>
                 <li><a href="<?php echo $base_url; ?>/index.php?">Tin tức</a></li>
             </ul>

@@ -9,11 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     date_default_timezone_set('Asia/Ho_Chi_Minh');
     $contact_date = time();
     $formattedTime = date('Y-m-d H:i:s', $contact_date);
-    if (isset($_SESSION['account_id'])) {
-        $accountId = $_SESSION['account_id'];
-    } else {
-        $accountId = 3;
-    }
+    $accountId = $_SESSION['user_id'];
 
     $conn = getConnection();
     $sql = "INSERT INTO contacts(contact_name, contact_email, contact_phone, message, account_id, contact_date) VALUE (?,?,?,?,?,?)";
@@ -22,6 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($st->execute()) {
         header("Location: ../index.php");
     } else {
-        echo "hi";
+        echo "Có lỗi khi gửi liên hệ!";
     }
 }

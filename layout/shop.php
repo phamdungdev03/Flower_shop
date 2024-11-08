@@ -25,7 +25,7 @@ if ($category_id === null) {
     }
 }
 ?>
-<section>
+<section style="display: flex; justify-content: space-between; ">
     <?php
     $sql = "SELECT * FROM products WHERE category_id = $category_id";
     $conn = getConnection();
@@ -36,8 +36,13 @@ if ($category_id === null) {
             $product_id = $row["product_id"];
             $product_name = $row["product_name"];
             $product_image = $row["default_image"];
-            $product_price = $row["sale_price"];
+            $product_price = $row["product_price"];
+            $product_sale = $row["sale_price"];
+            $is_new = $row["is_new"];
+            $is_best_seller = $row["is_best_seller"];
+            $is_discount = $row["is_discount"];
             $format_price = number_format($product_price, 0, ",", ".");
+            $product_price_sale = number_format($product_sale, 0, ",", ".");
             require("./layout/component/product.php");
         }
     } else {

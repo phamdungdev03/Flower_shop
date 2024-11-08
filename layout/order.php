@@ -50,30 +50,63 @@
                 $ngayTaoObj->modify('+2 days');
                 $ngayGiao = $ngayTaoObj->format('Y-m-d');
 
-                echo "<div class='order-item'>
+                switch ($status) {
+                    case 'pending':
+                        $statusDisplay = 'Chờ Xác Nhận';
+                        break;
+                    case 'processed':
+                        $statusDisplay = 'Đã Xác Nhận';
+                        break;
+                    case 'shipping':
+                        $statusDisplay = 'Đang Vận Chuyển';
+                        break;
+                    case 'completed':
+                        $statusDisplay = 'Hoàn Thành';
+                        break;
+                    case 'cancelled':
+                        $statusDisplay = 'Đã Hủy';
+                        break;
+                    default:
+                        $statusDisplay = 'Không xác định';
+                }
+            ?>
+                <div class='order-item'>
                     <div class='order-item-header'>
-                        <h3>Tên Người Nhận: $ten</h3>
-                        <span class='order-status'>$status</span>
+                        <h3>Tên Người Nhận: <?php echo $ten ?></h3>
+                        <span class='order-status'><?php echo $statusDisplay ?></span>
                     </div>
                     <div class='order-item-details'>
-                        <p><strong>Địa Chỉ:</strong> $diachi</p>
-                        <p><strong>Điện Thoại:</strong> $phone</p>
-                        <p><strong>Email:</strong> $email</p>
-                        <p><strong>Thời Gian Đặt:</strong> $Ngaytao</p>
-                        <p><strong>Thời Gian Giao:</strong> $ngayGiao</p>
+                        <p><strong>Địa Chỉ:</strong> <?php echo $diachi ?></p>
+                        <p><strong>Điện Thoại:</strong> <?php echo $phone ?></p>
+                        <p><strong>Email:</strong> <?php echo $email ?></p>
+                        <p><strong>Thời Gian Đặt:</strong> <?php echo $Ngaytao ?></p>
+                        <p><strong>Thời Gian Giao:</strong> <?php echo $ngayGiao ?></p>
                     </div>
                     <div class='order-item-actions'>
-                        <a href='./index.php?id=7' class='view-order'>Xem Đơn Hàng</a>
-                        <div>
-                            <a href='./actions/handle_comfirm-order.php?iddh=$ma'>
-                                <button class='comfirm-order'>Xác nhận</button>
-                            </a>
-                            <a href='./actions/handle_remove-order.php'?iddh=$ma'>
-                                <button class='delete-order'>Hủy Đơn</button>
-                            </a>
-                        </div>
+                        <a href='./index.php?id=7&order_id=<?php echo $ma ?>' class='view-order'>Xem Đơn Hàng</a>
+                        <?php
+                        if ($status == "pending") {
+                        ?>
+                            <div>
+                                <a href='./actions/handle_comfirm-order.php?iddh=<?php echo $ma ?>'>
+                                    <button class='comfirm-order'>Xác nhận</button>
+                                </a>
+                                <a href='./actions/handle_remove-order.php?iddh=<?php echo $ma ?>'>
+                                    <button class='delete-order'>Hủy Đơn</button>
+                                </a>
+                            </div>
+                        <?php
+                        } else if ($status == "completed" || $status == "cancelled") {
+                            echo "";
+                        } else {
+                            echo "<a>
+                                    <button class='order-wait'>Đang trong quá trình</button>
+                                </a>";
+                        }
+                        ?>
                     </div>
-                </div>";
+                </div>
+            <?php
             }
             ?>
         </div>

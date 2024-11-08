@@ -21,6 +21,7 @@
         "5" => "./layout/cart.php",
         "6" => "./layout/order.php",
         "7" => "./layout/detail_order.php",
+        "8" => "./layout/review_product.php",
 
     ];
     $id = $_GET["id"] ?? null;
@@ -33,7 +34,7 @@
         <!-- Sidebar và Wrapper -->
         <div class="section-content">
             <div class="container_sidebar">
-                <?php if ($id !== "3" && $id !== "1" && $id !== "5" && $id != "6") {
+                <?php if ($id !== "3" && $id !== "1" && $id !== "5" && $id != "6" && $id != "7" && $id != "8") {
                     include("./layout/component/sidebar.php");
                 } ?>
 

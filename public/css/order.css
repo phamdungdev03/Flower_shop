@@ -101,12 +101,22 @@
     background-color: #e60000;
 }
 
-.comfirm-order{
+.comfirm-order {
     background-color: green;
     color: white;
     padding: 8px 12px;
     border: none;
     cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.order-wait {
+    background-color: gray;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: default;
     font-size: 14px;
     border-radius: 5px;
 }
