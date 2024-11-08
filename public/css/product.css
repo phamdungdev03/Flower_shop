@@ -1,0 +1,35 @@
+.new-product {
+    width: 200px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+}
+
+.new-product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.new-product__image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.new-product__name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.new-product__price {
+    font-size: 14px;
+    color: #f44336;
+    font-weight: bold;
+}

@@ -19,9 +19,9 @@ $base_path = $_SERVER['DOCUMENT_ROOT'] . "/Flower_shop";
                 $product_id = $row["product_id"];
                 $product_name = $row["product_name"];
                 $product_image = $row["default_image"];
-                $product_price = $row["sale_price"];
+                $product_price = $row["product_price"];
                 $product_sale = $row["sale_price"];
-                $format_price = number_format($product_price, 0, ",", ".");
+                $format_price = number_format($product_sale, 0, ",", ".");
                 include("{$base_path}/layout/component/product.php");
             }
         } else {
