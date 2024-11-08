@@ -103,6 +103,10 @@
     flex-direction: column;
 }
 
+.cart_link{
+    cursor: pointer;
+}
+
 .info-title {
     font-weight: bold;
     color: #555;

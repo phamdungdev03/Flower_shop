@@ -42,12 +42,12 @@
         </div>
 
         <div class="header-info">
-            <div class="info-item">
+            <div class="info-item cart_link">
                 <div class="info_item-icon">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
                 <div class="box_info-span">
-                    <span class="ingo-title">Giỏ hàng</span>
+                    <span class="ingo-title" onclick="window.location.href='./index.php?id=5'">Giỏ hàng</span>
                 </div>
             </div>
             <div class="info-item">
@@ -75,7 +75,7 @@
             <ul>
                 <li><a href="<?php echo $base_url; ?>/index.php">Trang chủ</a></li>
                 <li><a href="<?php echo $base_url; ?>/index.php">Giới thiệu</a></li>
-                <li><a href="<?php echo $base_url; ?>/index.php?id=2">Sản phẩm</a></li>
+                <li><a href="<?php echo $base_url; ?>/index.php?id=2&category_id=1">Sản phẩm</a></li>
                 <li><a href="<?php echo $base_url; ?>/index.php?id=3">Liên hệ</a></li>
                 <li><a href="<?php echo $base_url; ?>/index.php?">Tin tức</a></li>
             </ul>
