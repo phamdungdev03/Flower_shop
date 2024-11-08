@@ -12,7 +12,13 @@
     <h3 class="new-product__name"><?php echo $product_name; ?></h3>
 
     <div class="new-product__price">
-        <span class="original-price"><?php echo $format_price; ?> đ</span>
-        <span class="sale-price"><?php echo $product_price_sale; ?> đ</span>
+        <?php
+        if ($product_price != $product_sale) {
+            echo "<span class='original-price'> $format_price đ</span>
+                <span class='sale-price'> $product_price_sale đ</span>";
+        } else {
+            echo " <span class='sale-price'> $product_price_sale; đ</span>";
+        }
+        ?>
     </div>
 </div>

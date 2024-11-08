@@ -1,6 +1,12 @@
 <link rel="stylesheet" href="./public/css/new_products.css">
 <?php
-$base_path = $_SERVER['DOCUMENT_ROOT'] . "/Flower_shop";
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$host = $_SERVER['HTTP_HOST'];
+$scriptName = $_SERVER['SCRIPT_NAME'];
+$path = str_replace(basename($scriptName), '', $scriptName);
+
+$base_url = $protocol . $host . $path;
+$base_url = rtrim($base_url, '/');
 ?>
 
 <section class="new-products">
@@ -26,7 +32,7 @@ $base_path = $_SERVER['DOCUMENT_ROOT'] . "/Flower_shop";
                 $is_discount = $row["is_discount"];
                 $format_price = number_format($product_price, 0, ",", ".");
                 $product_price_sale = number_format($product_sale, 0, ",", ".");
-                include("{$base_path}/layout/component/product.php");
+                include("{$base_url}/layout/component/product.php");
             }
         } else {
             echo "<p>Không có sản phẩm nào.</p>";

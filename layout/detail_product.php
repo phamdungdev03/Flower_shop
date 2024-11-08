@@ -1,8 +1,15 @@
 <link rel="stylesheet" href="./public/css/detail_product.css">
 
 <?php
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$host = $_SERVER['HTTP_HOST'];
+$scriptName = $_SERVER['SCRIPT_NAME'];
+$path = str_replace(basename($scriptName), '', $scriptName);
+
+$base_url = $protocol . $host . $path;
+$base_url = rtrim($base_url, '/');
+
 include("./config/database.php");
-$base_path = $_SERVER['DOCUMENT_ROOT'] . "/Flower_shop";
 $product_id = $_GET["product_id"];
 $sql = "SELECT * From `products` where product_id = $product_id";
 $conn = getConnection();
@@ -94,7 +101,7 @@ if ($category_id) {
                 $product_price = $row["product_price"];
                 $product_sale = $row["sale_price"];
                 $format_price = number_format($product_sale, 0, ",", ".");
-                include("{$base_path}/layout/component/product.php");
+                include("{$base_url}/layout/component/product.php");
             }
         } else {
             echo "<p>Không có sản phẩm nào.</p>";

@@ -6,6 +6,13 @@
     </header>
     <div class="best-products__list">
         <?php
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $host = $_SERVER['HTTP_HOST'];
+        $scriptName = $_SERVER['SCRIPT_NAME'];
+        $path = str_replace(basename($scriptName), '', $scriptName);
+
+        $base_url = $protocol . $host . $path;
+        $base_url = rtrim($base_url, '/');
         require("./config/database.php");
         $conn = getConnection();
         $sql = "SELECT * FROM products WHERE is_best_seller = '1'";
@@ -23,7 +30,7 @@
                 $is_discount = $row["is_discount"];
                 $format_price = number_format($product_price, 0, ",", ".");
                 $product_price_sale = number_format($product_sale, 0, ",", ".");
-                include("{$base_path}/layout/component/product.php");
+                include("{$base_url}/layout/component/product.php");
             }
         } else {
             echo "<p>Không có sản phẩm nào.</p>";

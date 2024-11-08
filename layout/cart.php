@@ -1,9 +1,17 @@
 <link rel="stylesheet" href="./public/css/cart.css">
 
 <?php
-$base_path = $_SERVER['DOCUMENT_ROOT'] . "/Flower_shop";
-include "$base_path/actions/handle_cart.php";
-include "$base_path/actions/handle_order.php";
+
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$host = $_SERVER['HTTP_HOST'];
+$scriptName = $_SERVER['SCRIPT_NAME'];
+$path = str_replace(basename($scriptName), '', $scriptName);
+
+$base_url = $protocol . $host . $path;
+$base_url = rtrim($base_url, '/');
+
+include "$base_url/actions/handle_cart.php";
+include "$base_url/actions/handle_order.php";
 if (isset($_SESSION['user_id'])) {
     $error = false;
     $success = false;
