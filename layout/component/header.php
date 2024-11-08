@@ -44,6 +44,14 @@
         <div class="header-info">
             <div class="info-item cart_link">
                 <div class="info_item-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="box_info-span">
+                    <span class="ingo-title" onclick="window.location.href='./index.php?id=9'">Yêu Thích</span>
+                </div>
+            </div>
+            <div class="info-item cart_link">
+                <div class="info_item-icon">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
                 <div class="box_info-span">

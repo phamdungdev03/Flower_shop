@@ -1,0 +1,11 @@
+.product-wishlist h1{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.product-wishlist-list{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
