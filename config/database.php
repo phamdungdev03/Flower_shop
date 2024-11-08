@@ -2,7 +2,7 @@
 if (!function_exists('getConnection')) {
     function getConnection()
     {
-        $servername = "localhost:3307";
+        $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "flower_shop";
