@@ -36,21 +36,21 @@ if ($category_id) {
         <div class="product-detail__image">
             <img src="./public/uploads/<?php echo $default_image ?>" alt="Tên sản phẩm">
         </div>
-        <form method="POST" action="cart.php?action=add" class="product-detail__info">
+        <form method="POST" action="index.php?id=5&action=add" class="product-detail__info">
             <h1 class="product-detail__name"><?php echo $product_name ?></h1>
             <div class="product-detail__price">
                 <span class="original-price"><?php echo $format_price ?>đ</span>
                 <span class="discounted-price"><?php echo $format_price_sale ?>đ</span>
             </div>
             <div class="detail-info-category">
-                <span>Danh mục:
+                <span>Loại hoa:
                     <a href="./index.php?id=2&category_id=<?php echo $category_id ?>"><?php echo $category_name ?></a>
                 </span>
             </div>
             <div class="quantity-selector">
-                <button id="decrease-btn">-</button>
+                <span class="btn_count" id="decrease-btn">-</span>
                 <input type="number" id="quantity-input" value="1" min="1" name="quantity[<?php echo $product_id ?>]">
-                <button id="increase-btn">+</button>
+                <span class="btn_count" id="increase-btn">+</span>
             </div>
             <p class="product-detail__description"><?php echo $product_detail ?></p>
             <p>Hoa giao nhanh 60 phút Hà nội</p>

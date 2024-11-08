@@ -90,18 +90,19 @@ CREATE TABLE cart_items (
     FOREIGN KEY (cart_id) REFERENCES cart(cart_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
-
 CREATE TABLE reviews (
     review_id INT AUTO_INCREMENT PRIMARY KEY,
     account_id INT NOT NULL,
     product_id INT NOT NULL,
-    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    rating INT NOT NULL CHECK (
+        rating >= 1
+        AND rating <= 5
+    ),
     comment TEXT,
     review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (account_id) REFERENCES accounts(account_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
-
 CREATE TABLE wishlists (
     wishlist_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     product_id INT NOT NULL,

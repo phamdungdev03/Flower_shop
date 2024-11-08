@@ -22,29 +22,3 @@
     flex-wrap: wrap;
     gap: 20px;
 }
-
-.new-product {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: calc(25% - 20px);
-}
-
-.new-product__image {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.new-product__name {
-    font-size: 18px;
-    color: #333;
-    margin: 10px 0 5px;
-}
-
-.new-product__price {
-    font-size: 16px;
-    color: #007acc;
-}
