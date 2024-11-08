@@ -16,11 +16,12 @@ $base_path = $_SERVER['DOCUMENT_ROOT'] . "/Flower_shop";
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $ma = $row["product_id"];
-                $ten = $row["product_name"];
-                $anh = $row["default_image"];
-                $gia = $row["sale_price"];
-                $parsed_gia = number_format($gia, 0, ",", ".");
+                $product_id = $row["product_id"];
+                $product_name = $row["product_name"];
+                $product_image = $row["default_image"];
+                $product_price = $row["sale_price"];
+                $product_sale = $row["sale_price"];
+                $format_price = number_format($product_price, 0, ",", ".");
                 include("{$base_path}/layout/component/product.php");
             }
         } else {

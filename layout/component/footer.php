@@ -26,7 +26,7 @@
             <a href="#">Phạm Văn Dũng - 12/11/2003</a>
             <a href="#">Phạm Văn Tâm - 19/11/2003</a>
             <a href="#">Nguyễn Hoàng Nam - 21/12/20003</a>
-            <a href="#">Trịnh Văn Minh - </a>
+            <a href="#">Trịnh Văn Minh - 17/02/2003</a>
         </div>
     </div>
 </footer>

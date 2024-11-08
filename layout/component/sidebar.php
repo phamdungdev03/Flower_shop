@@ -14,7 +14,7 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     $id = $row["category_id"];
                     $name = $row["category_name"];
-                    echo " <li><i class='fa-solid fa-check'></i> <a href='./index.php?id=2'>{$name}</a></li>";
+                    echo " <li><i class='fa-solid fa-check'></i> <a href='./index.php?id=2&category_id={$id}'>{$name}</a></li>";
                 }
             }
             ?>
