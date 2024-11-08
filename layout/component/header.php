@@ -12,7 +12,7 @@
                             <li><a href='./index.php?id=4' class='name_user'>{$_SESSION['username']}</a></li>
                             <li><a href='#'>Chính sách bảo mật</a></li>
                             <li><a href='./index.php?id=6'>Đơn hàng</a></li>
-                            <li><a href='./login.php'>Đăng xuất</a></li>
+                            <li><a href='./actions/handle_logout.php'>Đăng xuất</a></li>
                         ";
                 } else {
                     echo " 

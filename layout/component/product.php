@@ -6,17 +6,19 @@
         ($is_best_seller == 1 ? "<div class='new-product__label hot'>Hot</div>" : "") .
         ($is_discount == 1 ? "<div class='new-product__label sale'>Sale</div>" : "");
 
-    $accountId = $_SESSION['user_id'];
-    require("./config/database.php");
+    if (isset($_SESSION['user_id'])) {
+        $accountId = $_SESSION['user_id'];
+        require("./config/database.php");
 
-    $conn = getConnection();
-    $sql1 = "SELECT * FROM wishlists WHERE account_id = $accountId";
-    $wishlists = mysqli_query($conn, $sql1);
-    $wishlist = [];
-    while ($row = mysqli_fetch_assoc($wishlists)) {
-        $wishlist[] = $row['product_id'];
+        $conn = getConnection();
+        $sql1 = "SELECT * FROM wishlists WHERE account_id = $accountId";
+        $wishlists = mysqli_query($conn, $sql1);
+        $wishlist = [];
+        while ($row = mysqli_fetch_assoc($wishlists)) {
+            $wishlist[] = $row['product_id'];
+        }
+        $isInWishlist = in_array($product_id, $wishlist);
     }
-    $isInWishlist = in_array($product_id, $wishlist);
     ?>
 
 

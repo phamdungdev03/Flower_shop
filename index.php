@@ -35,7 +35,7 @@
         <!-- Sidebar và Wrapper -->
         <div class="section-content">
             <div class="container_sidebar">
-                <?php if ($id !== "3" && $id !== "1" && $id !== "5" && $id != "6" && $id != "7" && $id != "8" && $id != "9") {
+                <?php if ($id !== "3" && $id !== "1" && $id !== "5" && $id != "6" && $id != "7" && $id != "8") {
                     include("./layout/component/sidebar.php");
                 } ?>
 
