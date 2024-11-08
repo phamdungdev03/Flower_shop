@@ -2,11 +2,11 @@
 if (!function_exists('getConnection')) {
     function getConnection()
     {
-        $servername = "localhost:3307";
+        $servername = "localhost:3306";
         $username = "root";
         $password = "";
         $dbname = "flower_shop";
-        $host = 3366;
+        $host = 3306;
         $conn = new mysqli($servername, $username, $password, $dbname, $host);
 
         if ($conn->connect_error) {
