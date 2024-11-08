@@ -20,4 +20,11 @@
             ?>
         </ul>
     </div>
+    <div class="box_img">
+        <img src="./public/img/sidebar_img.jpg" alt="img">
+        <img src="./public/img/sidebar_img-1.jpg" alt="img">
+        <img src="./public/img/sidebar_img-2.jpg" alt="img">
+    </div>
+    <div>
+    </div>
 </section>
