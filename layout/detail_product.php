@@ -25,6 +25,26 @@ if ($category_id) {
         $category_name = $row['category_name'];
     }
 }
+
+$sqlReviews = "SELECT * FROM reviews as r JOIN accounts as a ON r.account_id = a.account_id WHERE product_id = ?";
+$stmtReviews = $conn->prepare($sqlReviews);
+$stmtReviews->bind_param("i", $product_id);
+$stmtReviews->execute();
+$resultReviews = $stmtReviews->get_result();
+
+$sql = "SELECT AVG(rating) as averageRating, COUNT(*) as totalReviews FROM reviews WHERE product_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $averageRating = round($row['averageRating'], 1);
+    $totalReviews = $row['totalReviews'];
+} else {
+    $averageRating = 0;
+}
 ?>
 
 <section class="product-detail">
@@ -38,6 +58,20 @@ if ($category_id) {
         </div>
         <form method="POST" action="index.php?id=5&action=add" class="product-detail__info">
             <h1 class="product-detail__name"><?php echo $product_name ?></h1>
+            <div class="product-detail-review">
+                <div class="star-rating">
+                    <?php
+                    for ($i = 1; $i <= 5; $i++) {
+                        if ($i <= $averageRating) {
+                            echo '<i class="fas fa-star star star-active"></i>';
+                        } else {
+                            echo '<i class="fas fa-star star"></i>';
+                        }
+                    }
+                    ?>
+                    <span><?php echo $averageRating; ?> / 5</span>
+                </div>
+            </div>
             <div class="product-detail__price">
                 <span class="original-price"><?php echo $format_price ?>đ</span>
                 <span class="discounted-price"><?php echo $format_price_sale ?>đ</span>
@@ -77,6 +111,61 @@ if ($category_id) {
                 </ul>
             </div>
         </form>
+    </div>
+
+    <div class="product-detail-reviews">
+        <h2>Đánh giá sản phẩm</h2>
+        <?php
+        if ($totalReviews > 0) {
+        ?>
+            <div class="star-ratings">
+                <?php
+                for ($i = 1; $i <= 5; $i++) {
+                    if ($i <= round($averageRating)) {
+                        echo '<i class="fas fa-star"></i>';
+                    } else {
+                        echo '<i class="far fa-star"></i>';
+                    }
+                }
+                ?>
+                <span>(<?php echo $averageRating; ?> / 5)</span>
+            </div>
+            <div class="review-summary">
+                <p class="review-total">Tổng số đánh giá: <b><?php echo $totalReviews; ?></b></p>
+            </div>
+            <ul class="review-list">
+                <?php
+                while ($rowReview = $resultReviews->fetch_assoc()) {
+                    $rating = $rowReview['rating'];
+                    $username = htmlspecialchars($rowReview['full_name']);
+                    $date = htmlspecialchars($rowReview['review_date']);
+                    $comment = htmlspecialchars($rowReview['comment']);
+                ?>
+                    <li class="review-item">
+                        <div class="review-header">
+                            <strong><?php echo $username; ?></strong> <span class="review-date"><?php echo $date; ?></span>
+                        </div>
+                        <div class="review-body">
+                            <p><?php echo $comment; ?></p>
+                        </div>
+                        <div class="review-rating">
+                            <?php
+                            for ($i = 1; $i <= 5; $i++) {
+                                if ($i <= $rating) {
+                                    echo '<i class="fas fa-star"></i>';
+                                } else {
+                                    echo '<i class="far fa-star"></i>';
+                                }
+                            }
+                            ?>
+                        </div>
+                    </li>
+                <?php } ?>
+            </ul>
+        <?php } else {
+            echo "<p class='no-review'>Chưa có đánh giá nào!</p>";
+        }
+        ?>
     </div>
 
     <div class="product-detail__related">

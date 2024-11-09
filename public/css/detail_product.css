@@ -28,7 +28,6 @@
 .product-detail__name {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
     color: #333;
 }
 
@@ -153,7 +152,7 @@
 }
 
 .detail-info-category a {
-    color: #007BFF; 
+    color: #007BFF;
     text-decoration: none;
     font-weight: 600;
     margin-left: 5px;
@@ -161,7 +160,7 @@
 
 .detail-info-category a:hover {
     text-decoration: underline;
-    color: #0056b3; 
+    color: #0056b3;
 }
 
 .endow {
@@ -221,7 +220,7 @@
     margin-top: 30px;
 }
 
-.related-list{
+.related-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -297,5 +296,95 @@
 
 .breadcrumb a:hover {
     text-decoration: underline;
-    color: #0056b3; 
+    color: #0056b3;
+}
+
+.product-detail-review {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    font-size: 12px;
+}
+
+.star-rating .star-active {
+    color: rgb(236, 168, 22);
+}
+
+.product-detail-reviews {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.product-detail-reviews h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.star-ratings {
+    color: rgb(236, 168, 22);
+    margin-bottom: 10px;
+    font-size: 12px;
+    display: flex;
+    gap: 1px;
+    align-items: center;
+}
+
+.star-ratings span{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.review-summary {
+    margin-bottom: 20px;
+}
+
+.review-list {
+    list-style: none;
+    padding: 0;
+}
+
+.review-item {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.review-header {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.review-body {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    color: gray;
+}
+
+.review-rating {
+    color: rgb(236, 168, 22);
+    font-size: 12px;
+}
+
+.review-date {
+    font-size: 14px;
+}
+
+.no-review{
+    font-size: 14px;
+    color: gray;
+    margin-top: 5px;
 }
