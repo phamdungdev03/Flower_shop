@@ -81,31 +81,33 @@ if ($category_id) {
 
     <div class="product-detail__related">
         <h2 class="related-title">Sản Phẩm Liên Quan</h2>
-        <?php
-        $conn = getConnection();
-        $sql = "SELECT * From products WHERE category_id = $category_id AND product_id != $product_id";
-        $result = mysqli_query($conn, $sql);
+        <div class="related-list">
+            <?php
+            $conn = getConnection();
+            $sql = "SELECT * From products WHERE category_id = $category_id AND product_id != $product_id";
+            $result = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $product_id = $row["product_id"];
-                $product_name = $row["product_name"];
-                $product_image = $row["default_image"];
-                $product_price = $row["product_price"];
-                $product_sale = $row["sale_price"];
-                $is_new = $row["is_new"];
-                $is_best_seller = $row["is_best_seller"];
-                $is_discount = $row["is_discount"];
-                $format_price = number_format($product_price, 0, ",", ".");
-                $product_price_sale = number_format($product_sale, 0, ",", ".");
-                include("./layout/component/product.php");
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $product_id = $row["product_id"];
+                    $product_name = $row["product_name"];
+                    $product_image = $row["default_image"];
+                    $product_price = $row["product_price"];
+                    $product_sale = $row["sale_price"];
+                    $is_new = $row["is_new"];
+                    $is_best_seller = $row["is_best_seller"];
+                    $is_discount = $row["is_discount"];
+                    $format_price = number_format($product_price, 0, ",", ".");
+                    $product_price_sale = number_format($product_sale, 0, ",", ".");
+                    include("./layout/component/product.php");
+                }
+            } else {
+                echo "<p>Không có sản phẩm nào.</p>";
             }
-        } else {
-            echo "<p>Không có sản phẩm nào.</p>";
-        }
 
-        mysqli_close($conn);
-        ?>
+            mysqli_close($conn);
+            ?>
+        </div>
     </div>
 </section>
 <script>

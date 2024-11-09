@@ -23,6 +23,7 @@
         "7" => "./layout/detail_order.php",
         "8" => "./layout/review_product.php",
         "9" => "./layout/wishlist_product.php",
+        "10" => "./forgot_password.php",
 
     ];
     $id = $_GET["id"] ?? null;
@@ -35,7 +36,7 @@
         <!-- Sidebar và Wrapper -->
         <div class="section-content">
             <div class="container_sidebar">
-                <?php if ($id !== "3" && $id !== "1" && $id !== "5" && $id != "6" && $id != "7" && $id != "8") {
+                <?php if ($id !== "3" && $id !== "1" && $id !== "5" && $id != "6" && $id != "7" && $id != "8" && $id != "10") {
                     include("./layout/component/sidebar.php");
                 } ?>
 
