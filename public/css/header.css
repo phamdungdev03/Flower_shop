@@ -215,6 +215,12 @@
     background-color: #F1F1F1;
 }
 
+.box_header-bottom{
+    display: flex;
+    margin: 0 auto;
+    max-width: 1250px;
+}
+
 .header-bottom {
     margin: 0 auto;
     max-width: 1250px;
@@ -273,7 +279,7 @@
     align-items: center;
     justify-content: center;
     width: 40px;
-    height: 40px;
+    height: 33px;
     background-color: #007bff;
     border: none;
     border-radius: 50%;
@@ -293,96 +299,157 @@
 }
 
 .modal-search {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-    border-radius: 8px;
-    overflow: hidden;
-    max-height: 400px;
-    overflow-y: auto;
     display: none;
 }
 
 .search-background {
-    display: none;
+    backdrop-filter: blur(1px);
+    background-color: rgba(0, 0, 0, .4);
+    height: 100%;
+    left: 0;
     position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9;
+    top: 0;
+    width: 100vw;
+    z-index: 998;
+}
+.modal-search-container {
+    min-height: 150px;
+    max-height: 70vh;
+    padding: 10px 0;
+    position: fixed;
+    right: 28%;
+    top: 30%;
+    transform: translateX(235px);
+    width: 572px;
+    z-index: 1000;
 }
 
-.modal-search-container {
-    padding: 15px;
+.modal-search-container::before {
+    border-bottom: 9px solid #fff;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    content: "";
+    height: 0;
+    position: absolute;
+    left: 20px;
+    top: 2px;
+    width: 0;
+}
+
+.search-container-wrapper {
+    background-color: #fff;
+    border-radius: 10px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
 }
 
 .modal-search-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #615959;
+    background-color: #f3f1f1;
+    padding: 8px 14px;
 }
 
 .modal-search-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    justify-content: center;
+    max-height: 500px;
+}
+
+.modal-search-list a {
+    text-decoration: none;
+    color: #444;
 }
 
 .search-item {
     display: flex;
     align-items: center;
-    padding: 8px;
-    gap: 10px;
-    text-decoration: none;
-    color: #333;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    padding: 8px 10px;
 }
 
 .search-item:hover {
-    background-color: #f9f9f9;
+    background-color: #f3f1f1;
 }
 
 .search-item img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background-color: transparent;
     border-radius: 5px;
 }
 
 .search-item-info {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    line-height: 1.8;
+    margin-left: 6px;
+    white-space: nowrap;
+    min-width: 80px;
+}
+
+.search-item-info p {
+    padding: 0;
+    margin: 0;
 }
 
 .search-item-info__name {
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    margin: 0;
-    line-height: 1.2;
+    font-size: 14px;
+    color: #444;
+    font-weight: bold;
+    max-width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .search-item-info__price {
-    font-size: 14px;
-    font-weight: 400;
-    color: #007bff;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.search-item-price__new {
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.search-item-price__old {
+    text-decoration: line-through;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .search-no-product {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 20px;
-    color: #888;
-    text-align: center;
+    margin: 50px 0;
 }
 
 .search-no-product img {
     width: 100px;
-    margin-bottom: 12px;
+    height: 100px;
+}
+
+.search-no-product p {
+    color: #444;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+}
+
+.search-no-product span {
+    color: #444;
+    font-size: 14px;
+    font-weight: 400;
 }

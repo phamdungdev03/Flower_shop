@@ -79,15 +79,86 @@
         </div>
     </div>
     <div class="container_header-bottom">
-        <div class="header-bottom">
-            <ul>
-                <li><a href="<?php echo $base_url; ?>/index.php">Trang chủ</a></li>
-                <li><a href="<?php echo $base_url; ?>/index.php">Giới thiệu</a></li>
-                <li><a href="<?php echo $base_url; ?>/index.php?id=2">Sản phẩm</a></li>
-                <li><a href="<?php echo $base_url; ?>/index.php?id=3">Liên hệ</a></li>
-                <li><a href="<?php echo $base_url; ?>/index.php?">Tin tức</a></li>
-            </ul>
-        </div>
+        <section class="box_header-bottom">
+            <div class="header-bottom">
+                <ul>
+                    <li><a href="<?php echo $base_url; ?>/index.php">Trang chủ</a></li>
+                    <li><a href="<?php echo $base_url; ?>/index.php">Giới thiệu</a></li>
+                    <li><a href="<?php echo $base_url; ?>/index.php?id=2">Sản phẩm</a></li>
+                    <li><a href="<?php echo $base_url; ?>/index.php?id=3">Liên hệ</a></li>
+                    <li><a href="<?php echo $base_url; ?>/index.php?">Tin tức</a></li>
+                </ul>
+            </div>
+
+            <div class="header__search-bar">
+                <?php
+                include './config/database.php';
+                $conn = getConnection();
+
+                if (isset($_GET["s1"]) && !empty($_GET["s1"])) {
+                    $key = mysqli_real_escape_string($conn, trim($_GET["s1"]));
+                    $sql = "SELECT product_id, product_name, default_image, product_price 
+                    FROM products 
+                    WHERE (product_id LIKE '%$key%') 
+                        OR (product_name LIKE '%$key%') 
+                        OR (default_image LIKE '%$key%') 
+                        OR (product_price LIKE '%$key%');";
+
+                    $result = mysqli_query($conn, $sql);
+                } else {
+                    $sql = "SELECT * FROM products ORDER BY product_price DESC LIMIT 4;";
+                    $result = mysqli_query($conn, $sql);
+                }
+                ?>
+                <div id="modal-search" class='modal-search'>
+                    <div id="background-close" class='search-background'></div>
+                    <div class='modal-search-container'>
+                        <div class='search-container-wrapper'>
+                            <div class='modal-search-title'>
+                                <span>Sản phẩm gợi ý</span>
+                            </div>
+                            <div class='modal-search-list'>
+                                <?php
+                                if (mysqli_num_rows($result) > 0) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $product_id = $row['product_id'];
+                                        $product_name = $row['product_name'];
+                                        $product_image = $row['default_image'];
+                                        $price = number_format($row['product_price'], 0, ',', '.') . 'đ';
+                                        echo "<a href='chitietsanpham.php?product_id=$product_id' class='search-item'>
+                                    <img src='./public/uploads/$product_image' alt='$product_name' />
+                                    <div class='search-item-info'>
+                                        <p class='search-item-info__name'>$product_name</p>
+                                        <div class='search-item-info__price'>
+                                            <p class='search-item-price__new'>$price</p>
+                                        </div>
+                                    </div>
+                                </a>";
+                                    }
+                                } else {
+                                    echo "<div class='search-no-product'>
+                                        <img src='https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/search/a60759ad1dabe909c46a.png' alt='' />
+                                        <p>Chưa có kết quả tìm kiếm nào.</p>
+                                        <span>Vui lòng sử dụng những từ khóa chung.</span>
+                                      </div>";
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form id="searchForm" method="get" class="search-container">
+                    <input id="s1" class="search-input" type="text" name="s1" placeholder="Bạn cần tìm gì ..." value="<?php if (isset($_GET["s1"])) {
+                                                                                                                            echo trim($_GET["s1"]);
+                                                                                                                        }
+                                                                                                                        ?>" />
+                    <button type="submit" class="search-button">
+                        <i class="fa-duotone fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
     </div>
 </header>
 
