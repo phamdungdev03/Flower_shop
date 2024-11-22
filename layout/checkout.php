@@ -1,5 +1,22 @@
 <link rel="stylesheet" href="./public/css/checkout.css">
 
+<?php
+if (isset($_GET['selectedIds']) && !empty($_GET['selectedIds'])) {
+    $selectedIds = $_GET['selectedIds'];
+    $selectedProductIds = implode(',', $selectedIds);
+
+    $conn = getConnection();
+    $sql = "SELECT ci.*, p.product_name, p.product_price, p.default_image 
+            FROM cart_items ci
+            JOIN products p ON ci.product_id = p.product_id
+            WHERE ci.cart_item_id IN ($selectedProductIds)";
+    $result = mysqli_query($conn, $sql);
+} else {
+    echo "Không có sản phẩm nào được chọn.";
+    exit;
+}
+?>
+
 <section class="checkout">
     <!-- Breadcrumb -->
     <div class="breadcrumb">
@@ -47,18 +64,32 @@
         <!-- Thông tin sản phẩm bên phải -->
         <div class="checkout-products">
             <h2 class="product-title">Thông tin sản phẩm</h2>
-            <div class="product-item">
-                <img src="product-image.jpg" alt="Ảnh" class="product-image">
-                <div class="product-details">
-                    <h3 class="product-name">Tên sản phẩm</h3>
-                    <p class="product-price">Giá: 500,000₫</p>
-                    <p class="product-sale-price">Giảm giá: 450,000₫</p>
+            <?php
+            if ($result && mysqli_num_rows($result) > 0) {
+                $total = 0;
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $productTotal = $row['product_price'] * $row['quantity'];
+                    $total += $productTotal;
+            ?>
+                    <div class="product-item">
+                        <img src="./public/uploads/<?= $row["default_image"] ?>" alt="Ảnh sản phẩm" class="product-image">
+                        <div class="product-details">
+                            <h3 class="product-name"><?= $row["product_name"] ?></h3>
+                            <p class="product-price">Giá: <?= number_format($row["product_price"], 0, ",", "."); ?>₫</p>
+                            <p class="product-total">Thành tiền: <?= number_format($productTotal, 0, ",", "."); ?>₫</p>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+                <div class="total-price">
+                    <p>Tổng tiền (gồm VAT): <strong><?= number_format($total, 0, ",", "."); ?>₫</strong></p>
                 </div>
-            </div>
-            <div class="total-price">
-                <span>Tổng tiền: </span>
-                <strong>450,000₫</strong>
-            </div>
+            <?php
+            } else {
+                echo "<p>Không có sản phẩm nào được chọn.</p>";
+            }
+            ?>
         </div>
     </div>
 </section>

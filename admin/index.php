@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['role_name']) || $_SESSION['role_name'] !== 'admin') {
+    header("Location: ../login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include './components/head.php' ?>
