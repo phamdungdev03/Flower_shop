@@ -200,7 +200,7 @@ if (isset($_SESSION['user_id'])) {
                                         <span><?php echo number_format($total, 0, ',', '.'); ?>đ</span>
                                     </div>
                                     <input type="hidden" name="sendIds" id="sendIdsInput">
-                                    <input class="checkout <?php echo !$hasValidId ? 'disabled-btn' : ''; ?>" value="THANH TOÁN" onclick="buyProduct()">
+                                    <input class="checkout <?php echo !$hasValidId ? 'disabled-btn' : ''; ?>" value="THANH TOÁN" onclick="goToCheckout()">
                                 </div>
                         <?php
                             }
@@ -236,3 +236,29 @@ if (isset($_SESSION['user_id'])) {
     </div>";
 }
 ?>
+<script>
+    function goToCheckout() {
+        const selectedCartIds = [];
+        document.querySelectorAll('.cart-checkbox:checked').forEach((checkbox) => {
+            selectedCartIds.push(checkbox.getAttribute('data-cart-id'));
+        });
+
+        if (selectedCartIds.length === 0) {
+            alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán.");
+            return;
+        }
+
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = './index.php?id=11';
+
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'selectedCartIds';
+        input.value = JSON.stringify(selectedCartIds);
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>

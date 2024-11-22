@@ -82,6 +82,27 @@ function sendCartIds() {
     document.getElementById('selectedIds').value = JSON.stringify(selectedCartIds);
     document.getElementById('myForm').submit();
 }
+
+function goToCheckout() {
+    document.getElementById('selectedIds').value = JSON.stringify(selectedCartIds);
+    if (selectedCartIds.length === 0) {
+        alert("Vui lòng chọn ít nhất một sản phẩm để thanh toán.");
+        return;
+    }
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = './index.php?id=11';
+
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'selectedCartIds';
+    input.value = JSON.stringify(selectedCartIds);
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+    form.submit();
+}
+
 window.addEventListener('load', () => {
     if (!localStorage.getItem('selectedCartIds')) {
         selectedCartIds = [];
