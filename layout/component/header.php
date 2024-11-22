@@ -125,7 +125,7 @@
                                         $product_name = $row['product_name'];
                                         $product_image = $row['default_image'];
                                         $price = number_format($row['product_price'], 0, ',', '.') . 'đ';
-                                        echo "<a href='chitietsanpham.php?product_id=$product_id' class='search-item'>
+                                        echo "<a href='./index.php?id=1&product_id=$product_id' class='search-item'>
                                     <img src='./public/uploads/$product_image' alt='$product_name' />
                                     <div class='search-item-info'>
                                         <p class='search-item-info__name'>$product_name</p>
