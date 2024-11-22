@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 exit();
             } else {
                 echo "<script>
-                        alert('Lỗi khi xóa sản phẩm!');
+                        alert('Bạn không thể xóa sản phẩm này vì liên quan đến dữ liệu hệ thống!');
                         window.location.href = '../index.php?id=4';
                       </script>";
                 exit();

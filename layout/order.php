@@ -18,11 +18,8 @@
         }
         if (count($order_ids) > 0) {
             $sql2 = "
-                    SELECT orders.order_id, orders.order_date, orders.status AS order_status, orders.total_price, 
-                        accounts.full_name AS customer_name, accounts.address AS customer_address, accounts.email AS customer_email, 
-                        accounts.phone_number AS customer_phone 
+                    SELECT *
                     FROM orders 
-                    JOIN accounts ON orders.account_id = accounts.account_id 
                     WHERE orders.order_id IN (" . implode(',', $order_ids) . ")
                 ";
             $result2 = mysqli_query($conn, $sql2);
@@ -39,16 +36,12 @@
             while ($row = mysqli_fetch_assoc($result2)) {
                 $index++;
                 $ma = $row['order_id'];
-                $ten = $row['customer_name'];
-                $diachi = $row['customer_address'];
-                $email = $row['customer_email'];
-                $phone = $row['customer_phone'];
+                $ten = $row['recipient_name'];
+                $diachi = $row['recipient_address'];
+                $phone = $row['recipient_phone'];
                 $Ngaytao = $row['order_date'];
-                $status = $row['order_status'];
-
-                $ngayTaoObj = new DateTime($Ngaytao);
-                $ngayTaoObj->modify('+2 days');
-                $ngayGiao = $ngayTaoObj->format('Y-m-d');
+                $status = $row['status'];
+                $thoiGianDuKien = $row['delivery_time'];
 
                 switch ($status) {
                     case 'pending':
@@ -78,9 +71,8 @@
                     <div class='order-item-details'>
                         <p><strong>Địa Chỉ:</strong> <?php echo $diachi ?></p>
                         <p><strong>Điện Thoại:</strong> <?php echo $phone ?></p>
-                        <p><strong>Email:</strong> <?php echo $email ?></p>
                         <p><strong>Thời Gian Đặt:</strong> <?php echo $Ngaytao ?></p>
-                        <p><strong>Thời Gian Giao:</strong> <?php echo $ngayGiao ?></p>
+                        <p><strong>Thời Gian Giao Hàng Dự Kiến:</strong> <?php echo $thoiGianDuKien ?></p>
                     </div>
                     <div class='order-item-actions'>
                         <a href='./index.php?id=7&order_id=<?php echo $ma ?>' class='view-order'>Xem Đơn Hàng</a>
@@ -88,9 +80,6 @@
                         if ($status == "pending") {
                         ?>
                             <div>
-                                <a href='./actions/handle_comfirm-order.php?iddh=<?php echo $ma ?>'>
-                                    <button class='comfirm-order'>Xác nhận</button>
-                                </a>
                                 <a href='./actions/handle_remove-order.php?iddh=<?php echo $ma ?>'>
                                     <button class='delete-order'>Hủy Đơn</button>
                                 </a>

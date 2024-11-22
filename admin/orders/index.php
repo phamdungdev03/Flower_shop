@@ -48,16 +48,17 @@ $result = getAllOrders();
                                             default:
                                                 $statusDisplay = 'Không xác định';
                                         }
+                                        $format_price = number_format($row['total_price'], 0, ",", ".");
                                 ?>
                                         <tr>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold"><?php echo $row['order_id'] ?></span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['full_name'] ?></span>
+                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['recipient_name'] ?></span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['total_price'] ?></span>
+                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $format_price ?>đ</span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold"><?php echo $statusDisplay ?></span>

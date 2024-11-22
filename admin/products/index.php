@@ -34,6 +34,7 @@ $result = getAllProducts();
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         $imageUrl = '../public/uploads/' . htmlspecialchars($row['default_image']);
+                                        $format_price = number_format($row['sale_price'], 0, ",", ".");
                                 ?>
                                         <tr>
                                             <td class="align-middle text-center">
@@ -49,7 +50,7 @@ $result = getAllProducts();
                                                 <span class="text-secondary text-xs font-weight-bold"><?php echo $row['quantity'] ?></span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['sale_price'] ?></span>
+                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $format_price ?>đ</span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold"><?php echo $row['category_name'] ?></span>

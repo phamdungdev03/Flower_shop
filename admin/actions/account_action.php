@@ -1,5 +1,7 @@
 <?php
 include('../functions/account_function.php');
+include('../functions/order_function.php');
+include('../functions/cart_function.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'];
     switch ($action) {
@@ -53,15 +55,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET['account_id'])) {
         $accountId = $_GET['account_id'];
+        // delete order
+        $ordersResult = getOrderByUserId($accountId);
+        if ($ordersResult->num_rows > 0) {
+            while ($order = $ordersResult->fetch_assoc()) {
+                $orderId = $order['order_id'];
+                $orderItemsResult = getOrderItemByOrderId($orderId);
+                if ($orderItemsResult->num_rows > 0) {
+                    while ($orderItem = $orderItemsResult->fetch_assoc()) {
+                        echo $orderItem['order_item_id'];
+                        deleteOrderItem($orderItem['order_item_id']);
+                    }
+                }
+                deleteOrder($orderId);
+            }
+        }
+
+        // delete cart
+        $cartResult = getCartByUserIdd($accountId);
+        if ($cartResult->num_rows > 0) {
+            while ($cart = $cartResult->fetch_assoc()) {
+                $cartId = $cart['cart_id'];
+                $cartItemsResult = getOrderItemByOrderId($cartId);
+                if ($cartItemsResult->num_rows > 0) {
+                    while ($cartItem = $cartItemsResult->fetch_assoc()) {
+                        deleteCartItem($cartItem['cart_item_id']);
+                    }
+                }
+                deleteCart($cartId);
+            }
+        }
+
         if (deleteUser($accountId)) {
             header("Location: ../index.php?id=7");
             exit();
         } else {
-            echo "<script>
-                        alert('Lỗi khi xóa người dùng!');
-                        window.location.href = '../index.php?id=7';
-                      </script>";
-            exit();
+            // echo "<script>
+            //             alert('Bạn không thể xóa người dùng này vì liên quan đến dữ liệu hệ thống!');
+            //             window.location.href = '../index.php?id=7';
+            //           </script>";
+            // exit();
         }
     }
 }

@@ -44,15 +44,19 @@ if (isset($_GET['order_id'])) {
                                     </div>
                                     <div class="input-group input-group-outline mb-3 d-flex flex-column">
                                         <label class="font-weight-bold mb-2">Người Mua Hàng</label>
-                                        <input type="text" class="form-control w-100" id="full_name" name="full_name" value="<?php echo $order['full_name'] ?>" readonly>
+                                        <input type="text" class="form-control w-100" id="full_name" name="full_name" value="<?php echo $order['recipient_name'] ?>" readonly>
                                     </div>
                                     <div class="input-group input-group-outline mb-3 d-flex flex-column">
                                         <label class="font-weight-bold mb-2">Tổng Tiền</label>
-                                        <input type="text" class="form-control w-100" id="total_price" name="total_price" value="<?php echo $order['total_price'] ?>" readonly>
+                                        <input type="text" class="form-control w-100" id="total_price" name="total_price" value="<?php echo $format_price = number_format($order['total_price'], 0, ",", "."); ?>đ" readonly>
                                     </div>
                                     <div class="input-group input-group-outline mb-3 d-flex flex-column">
                                         <label class="font-weight-bold mb-2">Ngày Đặt</label>
                                         <input type="text" class="form-control w-100" id="order_date" name="order_date" value="<?php echo $order['order_date'] ?>" required>
+                                    </div>
+                                    <div class="input-group input-group-outline mb-3 d-flex flex-column">
+                                        <label class="font-weight-bold mb-2">Thời Gian Giao Dự Kiến</label>
+                                        <input type="text" class="form-control w-100" id="order_date" name="order_date" value="<?php echo $order['delivery_time'] ?>" required>
                                     </div>
                                     <div class="input-group input-group-outline mb-3">
                                         <select class="form-control" id="status" name="status" required>
@@ -108,7 +112,7 @@ if (isset($_GET['order_id'])) {
                                                         <span class="text-secondary text-xs font-weight-bold"><?php echo $row['quantity'] ?></span>
                                                     </td>
                                                     <td class="align-middle text-center">
-                                                        <span class="text-secondary text-xs font-weight-bold"><?php echo $row['price'] ?></span>
+                                                        <span class="text-secondary text-xs font-weight-bold"><?php echo $format_price = number_format($row['price'], 0, ",", "."); ?>đ</span>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <span class="text-secondary text-xs font-weight-bold"><?php echo $total ?></span>

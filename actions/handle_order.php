@@ -1,4 +1,5 @@
 <?php
+include("./config/database.php");
 
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 $host = $_SERVER['HTTP_HOST'];
@@ -7,8 +8,6 @@ $path = str_replace(basename($scriptName), '', $scriptName);
 
 $base_url = $protocol . $host . $path;
 $base_url = rtrim($base_url, '/');
-
-include("./config/database.php");
 
 function getCartByUserId($userId)
 {

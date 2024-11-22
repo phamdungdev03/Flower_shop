@@ -49,6 +49,10 @@ CREATE TABLE orders (
     order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(50) DEFAULT 'pending',
     total_price DECIMAL(10, 2) NOT NULL,
+    recipient_name VARCHAR(255) NOT NULL,
+    recipient_phone VARCHAR(20) NOT NULL,
+    recipient_address TEXT NOT NULL,
+    delivery_time DATETIME,
     FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );
 -- Tạo bảng order_items (Chi tiết đơn hàng)

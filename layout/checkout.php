@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="./public/css/checkout.css">
 
 <?php
-// Xử lý dữ liệu khi phương thức POST
 $cartItems = [];
 $total = 0;
 
@@ -24,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Hàm ví dụ để lấy chi tiết sản phẩm từ database
 function getCartItemDetails($cartId)
 {
     $conn = getConnection();
@@ -38,6 +36,8 @@ function getCartItemDetails($cartId)
     $result = $stmt->get_result();
     return $result->fetch_assoc();
 }
+
+$cartItemsJson = json_encode($cartItems);
 ?>
 
 <section class="checkout">
@@ -47,34 +47,35 @@ function getCartItemDetails($cartId)
     <div class="checkout-container">
         <div class="checkout-form">
             <h2 class="form-title">Thông tin người nhận</h2>
-            <form action="actions/hanle_checkout.php" method="POST">
+            <form action="actions/handle_checkout.php" method="POST">
+            <input type="hidden" name="cartItems" value='<?php echo htmlspecialchars($cartItemsJson); ?>'>
                 <div class="form-group">
                     <label for="recipient_name">Họ và tên</label>
-                    <input type="text" id="recipient_name" name="recipient_name" placeholder="Nhập họ và tên" required>
+                    <input type="text" id="recipient_name" name="recipient_name" placeholder="Nhập họ và tên">
                 </div>
                 <div class="form-group">
                     <label for="recipient_phone ">Số điện thoại</label>
-                    <input type="tel" id="recipient_phone" name="recipient_phone" placeholder="Nhập số điện thoại" required>
+                    <input type="tel" id="recipient_phone" name="recipient_phone" placeholder="Nhập số điện thoại">
                 </div>
                 <div class="form-group">
                     <label for="recipient_address">Địa chỉ</label>
-                    <input type="text" id="recipient_address" name="recipient_address" placeholder="Nhập địa chỉ" required>
+                    <input type="text" id="recipient_address" name="recipient_address" placeholder="Nhập địa chỉ">
                 </div>
                 <div class="form-group">
                     <label for="delivery-time">Thời gian dự kiến</label>
-                    <input type="datetime-local" id="delivery-time" name="delivery_time" required>
+                    <input type="datetime-local" id="delivery-time" name="delivery_time">
                 </div>
                 <div class="form-group">
                     <label for="service">Dịch vụ kèm theo</label>
-                    <select id="service" name="service" required>
+                    <select id="service" name="service">
                         <option value="none">Không</option>
                         <option value="Gói quà">Gói quà</option>
                         <option value="Thiệp chúc mừng">Thiệp chúc mừng</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="note ">Lời nhắn</label>
-                    <textarea id="note " name="note " placeholder="Nhập lời nhắn" rows="4" required></textarea>
+                    <label for="note">Lời nhắn</label>
+                    <textarea id="note" name="note" placeholder="Nhập lời nhắn" rows="4"></textarea>
                 </div>
                 <div class="form-action">
                     <button type="submit" class="btn-submit">Hoàn tất đơn hàng</button>
@@ -82,7 +83,6 @@ function getCartItemDetails($cartId)
             </form>
         </div>
 
-        <!-- Hiển thị danh sách sản phẩm đã chọn -->
         <div class="checkout-products">
             <h2 class="product-title">Thông tin sản phẩm</h2>
             <?php if (!empty($cartItems)) : ?>

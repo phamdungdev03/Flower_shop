@@ -1,9 +1,14 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['role_name']) || $_SESSION['role_name'] != 1) {
-    header("Location: ../login.php");
-    exit();
+if(isset($_SESSION['username'])){
+    if (!isset($_SESSION['role_name']) || $_SESSION['role_name'] != 1) {
+        echo "<script>alert('Xin lỗi bạn! Bạn không phải là QTV!');
+              window.location.href = '../index.php';</script>";
+    }
+}else{
+    echo "<script>alert('Bạn chưa đăng nhập vào hệ thống!');
+              window.location.href = '../login.php';</script>";
 }
 ?>
 

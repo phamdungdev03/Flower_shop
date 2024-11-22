@@ -38,7 +38,6 @@ if (isset($_SESSION['user_id'])) {
                 $product_id = intval($_POST['product_id']);
                 updateCart($cart_item_id, $product_id, $quantity);
                 break;
-            case "submit":
                 if ($error == false) {
                     $cart_id = getCartByUserId($customer_id);
                     $total_amount = 0;

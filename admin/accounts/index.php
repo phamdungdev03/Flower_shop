@@ -1,6 +1,7 @@
 <?php
 include './functions/account_function.php';
-$result = getAllUsers(0);
+$user_id = $_SESSION['user_id'];
+$result = getAllUsers($user_id);
 ?>
 
 <div class="container-fluid py-2">
