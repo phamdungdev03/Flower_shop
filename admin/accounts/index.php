@@ -83,7 +83,7 @@ $result = getAllUsers($user_id);
 <script>
     function confirmDelete(event, url) {
         event.preventDefault();
-        if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
+        if (confirm("Khi bạn xóa người dùng này dữ liệu trong đơn hàng sẽ không được bảo toàn. Hãy chắc chắn muốn xóa?")) {
             window.location.href = url;
         }
     }

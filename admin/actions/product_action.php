@@ -1,5 +1,9 @@
 <?php
 include('../functions/product_function.php');
+include('../functions/order_function.php');
+include('../functions/cart_function.php');
+include('../functions/withlist_function.php');
+include('../functions/review_function.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'];
     switch ($action) {
@@ -12,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $categoryId = $_POST['category_id'];
             $isNew = isset($_POST['is_new']) ? '1' : '0';
             $isBestSeller = isset($_POST['is_best_seller']) ? '1' : '0';
-            $isDiscount= isset($_POST['is_discount']) ? '1' : '0';
+            $isDiscount = isset($_POST['is_discount']) ? '1' : '0';
 
             $image = $_FILES['image'];
             $targetDir = '../../public/uploads/';
@@ -47,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $categoryId = $_POST['category_id'];
             $isNew = isset($_POST['is_new']) ? '1' : '0';
             $isBestSeller = isset($_POST['is_best_seller']) ? '1' : '0';
-            $isDiscount= isset($_POST['is_discount']) ? '1' : '0';
+            $isDiscount = isset($_POST['is_discount']) ? '1' : '0';
 
             $image = $_FILES['image'];
             $existingImage = $_POST['existing_image'];
@@ -90,6 +94,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET['product_id'])) {
         $productId = $_GET['product_id'];
+
+        // delete order
+        $orderItemsResult = getOrderItemByProductId($productId);
+        if ($orderItemsResult->num_rows > 0) {
+            while ($orderItem = $orderItemsResult->fetch_assoc()) {
+                $accountId = $orderItem['account_id'];
+                $ordersResult = getOrderByUserId($accountId);
+                if ($ordersResult->num_rows > 0) {
+                    while ($order = $ordersResult->fetch_assoc()) {
+                        $orderId = $order['order_id'];
+                        $orderItemsResult = getOrderItemByOrderId($orderId);
+                        if ($orderItemsResult->num_rows > 0) {
+                            while ($orderItem = $orderItemsResult->fetch_assoc()) {
+                                deleteOrderItem($orderItem['order_item_id']);
+                            }
+                        }
+                        deleteOrder($orderId);
+                    }
+                }
+            }
+        }
+
+        // delete cart
+        $cartResult = getCartItemByProductId($productId);
+        if ($cartResult->num_rows > 0) {
+            while ($cart = $cartResult->fetch_assoc()) {
+                $cartId = $cart['cart_id'];
+                $cartItemsResult = getOrderItemByOrderId($cartId);
+                if ($cartItemsResult->num_rows > 0) {
+                    while ($cartItem = $cartItemsResult->fetch_assoc()) {
+                        deleteCartItem($cartItem['cart_item_id']);
+                    }
+                }
+                deleteCart($cartId);
+            }
+        }
+
+        // delete wishlist
+        $wishlistsResult = getWishListByProductId($productId);
+        if ($wishlistsResult->num_rows > 0) {
+            while ($wishlists = $wishlistsResult->fetch_assoc()) {
+                $wishlistId = $wishlists['wishlist_id'];
+                deleteWishlist($wishlistId);
+            }
+        }
+
+        // delete review
+        $reviewResult = getReviewByProductId($productId);
+        if ($reviewResult->num_rows > 0) {
+            while ($review = $reviewResult->fetch_assoc()) {
+                $reviewId = $review['review_id'];
+                deleteReview($reviewId);
+            }
+        }
+
         $product = getProductById($productId);
         if ($product) {
             $imageName = $product['image_url'];

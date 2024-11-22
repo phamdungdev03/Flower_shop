@@ -2,6 +2,8 @@
 include('../functions/account_function.php');
 include('../functions/order_function.php');
 include('../functions/cart_function.php');
+include('../functions/withlist_function.php');
+include('../functions/review_function.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = $_POST['action'];
     switch ($action) {
@@ -86,15 +88,33 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             }
         }
 
+        // delete wishlist
+        $wishlistsResult = getWishListByUserId($accountId);
+        if ($wishlistsResult->num_rows > 0) {
+            while ($wishlists = $wishlistsResult->fetch_assoc()) {
+                $wishlistId = $wishlists['wishlist_id'];
+                deleteWishlist($wishlistId);
+            }
+        }
+
+        // delete review
+        $reviewResult = getReviewByUserId($accountId);
+        if ($reviewResult->num_rows > 0) {
+            while ($review = $reviewResult->fetch_assoc()) {
+                $reviewId = $review['review_id'];
+                deleteReview($reviewId);
+            }
+        }
+
         if (deleteUser($accountId)) {
             header("Location: ../index.php?id=7");
             exit();
         } else {
-            // echo "<script>
-            //             alert('Bạn không thể xóa người dùng này vì liên quan đến dữ liệu hệ thống!');
-            //             window.location.href = '../index.php?id=7';
-            //           </script>";
-            // exit();
+            echo "<script>
+                        alert('Bạn không thể xóa người dùng này vì liên quan đến dữ liệu hệ thống!');
+                        window.location.href = '../index.php?id=7';
+                      </script>";
+            exit();
         }
     }
 }

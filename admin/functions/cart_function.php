@@ -15,6 +15,13 @@ function getCartItemByUserId($cartId){
     return $result;
 }
 
+function getCartItemByProductId($productId){
+    $conn = getConnection();
+    $sql = "SELECT ct.*, c.* FROM cart_items AS ct JOIN cart AS c ON ct.cart_id = c.cart_id WHERE ct.product_id = $productId";
+    $result = $conn->query($sql);
+    return $result;
+}
+
 function deleteCart($cartId)
 {
     $conn = getConnection();

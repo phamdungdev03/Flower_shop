@@ -59,6 +59,13 @@ function getOrderItemByOrderId($orderId){
     return $result;
 }
 
+function getOrderItemByProductId($productId){
+    $conn = getConnection();
+    $sql = "SELECT oi.*, o.* FROM order_items AS oi JOIN orders AS o ON oi.order_id = o.order_id WHERE oi.product_id = $productId";
+    $result = $conn->query($sql);
+    return $result;
+}
+
 function deleteOrder($orderId)
 {
     $conn = getConnection();

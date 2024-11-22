@@ -88,3 +88,10 @@ function updateProductQuantity($productId, $quantity)
     $conn->close();
     $st->closse();
 }
+
+function getProductByCategoryId($categoryId){
+    $conn = getConnection();
+    $sql = "SELECT * FROM products WHERE category_id = $categoryId";
+    $result = $conn->query($sql);
+    return $result;
+}

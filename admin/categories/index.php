@@ -66,7 +66,7 @@ $result = getAllCategories();
 <script>
     function confirmDelete(event, url) {
         event.preventDefault();
-        if (confirm("Bạn có chắc chắn muốn xóa thể loại này không?")) {
+        if (confirm("Khi bạn xóa thể loại này, dữ liệu sẽ mất mát lớn. Hãy chắc chắn xóa?")) {
             window.location.href = url;
         }
     }

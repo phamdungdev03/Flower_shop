@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             header("Location: ../index.php?id=1");
         } else {
             echo "<script>
-                        alert('Bạn không thể xóa thể loại này vì liên quan đến dữ liệu hệ thống!');
+                        alert('Có lỗi khi xóa!');
                         window.location.href = '../index.php?id=1';
                       </script>";
             exit();
