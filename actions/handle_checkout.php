@@ -42,7 +42,7 @@ function getTotalAmount($cartItemId)
 {
     $conn = getConnection();
     $total = 0;
-    $sql2 = "SELECT ci.quantity, p.product_price 
+    $sql2 = "SELECT ci.quantity, p.sale_price 
     FROM cart_items ci
     JOIN products p ON ci.product_id = p.product_id
     WHERE ci.cart_item_id = $cartItemId";
@@ -50,7 +50,7 @@ function getTotalAmount($cartItemId)
 
     if ($result2 && $result2->num_rows > 0) {
         while ($itemRow = $result2->fetch_assoc()) {
-            $total = $itemRow["quantity"] * $itemRow["product_price"];
+            $total = $itemRow["quantity"] * $itemRow["sale_price"];
         }
     }
     return $total;
@@ -72,12 +72,12 @@ function addOrder($user_id, $total_amount, $recipient_name, $recipient_phone, $r
 function addOrderItem($cartItemId, $cartId)
 {
     $conn = getConnection();
-    $sql = "SELECT ci.quantity, p.product_price, ci.product_id FROM cart_items ci JOIN products p ON ci.product_id = p.product_id WHERE ci.cart_item_id = $cartItemId";
+    $sql = "SELECT ci.quantity,p.sale_price ,p.product_price, ci.product_id FROM cart_items ci JOIN products p ON ci.product_id = p.product_id WHERE ci.cart_item_id = $cartItemId";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
         while ($itemRow = $result->fetch_assoc()) {
-            $price = $itemRow['product_price'];
+            $price = $itemRow['sale_price'];
             $quantity = $itemRow['quantity'];
             $product_id = $itemRow['product_id'];
 

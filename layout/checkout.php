@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             $total = array_sum(array_map(function ($item) {
-                return $item['product_price'] * $item['quantity'];
+                return $item['sale_price'] * $item['quantity'];
             }, $cartItems));
         }
     }
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function getCartItemDetails($cartId)
 {
     $conn = getConnection();
-    $sql = "SELECT ci.*, p.product_name, p.product_price,p.default_image
+    $sql = "SELECT ci.*, p.product_name, p.sale_price, p.product_price,p.default_image
             FROM cart_items ci
             JOIN products p ON ci.product_id = p.product_id
             WHERE ci.cart_item_id = ?";
@@ -48,7 +48,7 @@ $cartItemsJson = json_encode($cartItems);
         <div class="checkout-form">
             <h2 class="form-title">Thông tin người nhận</h2>
             <form action="actions/handle_checkout.php" method="POST">
-            <input type="hidden" name="cartItems" value='<?php echo htmlspecialchars($cartItemsJson); ?>'>
+                <input type="hidden" name="cartItems" value='<?php echo htmlspecialchars($cartItemsJson); ?>'>
                 <div class="form-group">
                     <label for="recipient_name">Họ và tên</label>
                     <input type="text" id="recipient_name" name="recipient_name" placeholder="Nhập họ và tên">
@@ -92,8 +92,8 @@ $cartItemsJson = json_encode($cartItems);
                         <div class="product-details">
                             <h3 class="product-name"><?= htmlspecialchars($item['product_name']) ?></h3>
                             <p class="product-quantity">Số lượng: <?= htmlspecialchars($item['quantity']) ?></p>
-                            <p class="product-price">Giá: <?= number_format($item['product_price'], 0, ',', '.') ?>₫</p>
-                            <p class="product-total">Thành tiền: <?= number_format($item['product_price'] * $item['quantity'], 0, ',', '.') ?>₫</p>
+                            <p class="product-price">Giá sale: <?= number_format($item['sale_price'], 0, ',', '.') ?>₫</p>
+                            <p class="product-total">Giá thành tiền: <?= number_format($item['sale_price'] * $item['quantity'], 0, ',', '.') ?>₫</p>
                         </div>
                     </div>
                 <?php endforeach; ?>
