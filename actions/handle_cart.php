@@ -3,7 +3,7 @@ include("./config/database.php");
 function getAllCarts($userId)
 {
     $conn = getConnection();
-    $sql = "SELECT products.product_name, products.default_image,cart.cart_id,cart_items.cart_item_id,products.product_price, cart_items.quantity, cart_items.product_id 
+    $sql = "SELECT products.product_name, products.default_image,cart.cart_id,cart_items.cart_item_id,products.product_price, products.sale_price, cart_items.quantity, cart_items.product_id 
         FROM cart 
         JOIN cart_items ON cart.cart_id = cart_items.cart_id 
         JOIN products ON cart_items.product_id = products.product_id

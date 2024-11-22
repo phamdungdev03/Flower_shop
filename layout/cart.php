@@ -151,7 +151,7 @@ if (isset($_SESSION['user_id'])) {
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="cart-item-center__total"><?= number_format($row["quantity"] * $row["product_price"], 0, ",", ","); ?>₫</span>
+                                            <span class="cart-item-center__total"><?= number_format($row["quantity"] * $row["sale_price"], 0, ",", ","); ?>₫</span>
                                         </td>
                                         <td>
                                             <a class="cart-remove" href="index.php?id=5&action=delete&ctid=<?= $row["cart_item_id"] ?>&cart_id=<?= $row["cart_id"] ?>" style="text-decoration: none;">
@@ -178,7 +178,7 @@ if (isset($_SESSION['user_id'])) {
                                 foreach ($selectedIds as $id) {
                                     $hasValidId = true;
                                     $conn = getConnection();
-                                    $sql1 = "SELECT ci.*, p.product_price AS product_price FROM cart_items ci
+                                    $sql1 = "SELECT ci.*, p.sale_price AS product_price FROM cart_items ci
                                   JOIN products p ON ci.product_id = p.product_id
                                   WHERE ci.cart_item_id = $id";
                                     $result = mysqli_query($conn, $sql1);
