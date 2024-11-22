@@ -18,11 +18,13 @@ $result = getAllContacts();
                             <thead>
                                 <tr>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mã liên hệ</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên tài khoản</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Họ Tên</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số điện thoại</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nội dung</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ngày gửi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,19 +37,32 @@ $result = getAllContacts();
                                                 <span class="text-secondary text-xs font-weight-bold"><?php echo $row['contact_id'] ?></span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['full_name'] ?></span>
+                                                <span class="text-secondary text-xs font-weight-bold">
+                                                    <?php
+                                                    echo isset($row['full_name']) && !empty($row['full_name']) ? $row['full_name'] : 'Không xác định';
+                                                    ?>
+                                                </span>
+
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['email'] ?></span>
+                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['contact_name'] ?></span>
                                             </td>
                                             <td class="align-middle text-center">
-                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['phone_number'] ?></span>
+                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['contact_email'] ?></span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold"><?php echo $row['contact_phone'] ?></span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold"><?php echo $row['message'] ?></span>
                                             </td>
                                             <td class="align-middle text-center">
                                                 <span class="text-secondary text-xs font-weight-bold"><?php echo $row['contact_date'] ?></span>
+                                            </td>
+                                            <td class="align-middle">
+                                                <a href="./actions/contact_action.php?contact_id=<?php echo $row['contact_id'] ?>" class="badge badge-sm bg-gradient-danger text-center" onclick="confirmDelete(event, this.href);">
+                                                    <i class="material-symbols-rounded text-sm">delete</i>
+                                                </a>
                                             </td>
                                         </tr>
                                 <?php
