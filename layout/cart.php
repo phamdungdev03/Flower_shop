@@ -26,8 +26,8 @@ if (isset($_SESSION['user_id'])) {
                 }
                 break;
             case "delete":
-                if (isset($_GET['id']) && isset($_GET['cart_id'])) {
-                    $cart_item_id = intval($_GET['id']);
+                if (isset($_GET['ctid']) && isset($_GET['cart_id'])) {
+                    $cart_item_id = intval($_GET['ctid']);
                     $cart_id = intval($_GET['cart_id']);
                     deleteCart($cart_id, $cart_item_id);
                 }
@@ -155,7 +155,7 @@ if (isset($_SESSION['user_id'])) {
                                             <span class="cart-item-center__total"><?= number_format($row["quantity"] * $row["product_price"], 0, ",", ","); ?>₫</span>
                                         </td>
                                         <td>
-                                            <a class="cart-remove" href="index.php?id=5&action=delete&id=<?= $row["cart_item_id"] ?>&cart_id=<?= $row["cart_id"] ?>" style="text-decoration: none;">
+                                            <a class="cart-remove" href="index.php?id=5&action=delete&ctid=<?= $row["cart_item_id"] ?>&cart_id=<?= $row["cart_id"] ?>" style="text-decoration: none;">
                                                 <i class="fa-solid fa-trash"></i>
                                             </a>
                                         </td>

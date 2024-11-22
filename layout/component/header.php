@@ -185,9 +185,10 @@
     window.addEventListener('load', () => {
         const currentPath = window.location.pathname;
         const currentUrl = window.location.href;
-        const isCartPage = currentPath.includes('/page/cart.php');
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
         const isEditAction = currentUrl.includes('action=edit');
-        if (!(isCartPage && !isEditAction)) {
+        if (isEditAction || id !== '5') {
             localStorage.removeItem('selectedCartIds');
         }
     });

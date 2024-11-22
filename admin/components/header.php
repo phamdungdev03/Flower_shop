@@ -10,8 +10,8 @@
             <ul class="navbar-nav d-flex align-items-center  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
                     <?php
-                    if (isset($_SESSION['user_name'])) {
-                        $userName = $_SESSION['user_name'];
+                    if (isset($_SESSION['username'])) {
+                        $userName = $_SESSION['username'];
                     ?>
                         <div class="d-flex flex-column align-items-center">
                             <i class='material-symbols-rounded'>account_circle</i>
