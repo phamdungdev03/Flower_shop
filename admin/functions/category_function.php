@@ -9,6 +9,19 @@ function getAllCategories()
     return $result;
 }
 
+function searchCategories($search)
+{
+    $conn = getConnection();
+    $sql = "SELECT * FROM categories WHERE category_name LIKE ?";
+    $stmt = $conn->prepare($sql);
+    $searchKeyword = "%" . $search . "%";
+    $stmt->bind_param("s", $searchKeyword);
+
+    $stmt->execute();
+    return $stmt->get_result();
+}
+
+
 function getCategoryById($categoryId)
 {
     $conn = getConnection();

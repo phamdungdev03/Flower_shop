@@ -303,8 +303,6 @@
 }
 
 .search-background {
-    backdrop-filter: blur(1px);
-    background-color: rgba(0, 0, 0, .4);
     height: 100%;
     left: 0;
     position: fixed;
@@ -317,10 +315,10 @@
     max-height: 70vh;
     padding: 10px 0;
     position: fixed;
-    right: 28%;
-    top: 30%;
+    right: 30%;
+    top: 27%;
     transform: translateX(235px);
-    width: 572px;
+    width: 577px;
     z-index: 1000;
 }
 

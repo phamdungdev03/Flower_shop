@@ -1,13 +1,32 @@
 <?php
 include(__DIR__ . '/../../config/database.php');
 
-function getAllProducts()
+function getAllProducts($search = null)
 {
     $conn = getConnection();
-    $sql = "SELECT p.product_id, p.product_name, p.quantity, p.sale_price, p.category_id, c.category_name, p.default_image FROM products p LEFT JOIN categories c ON p.category_id = c.category_id";
-    $result = $conn->query($sql);
+
+    $query = "
+        SELECT p.product_id, p.product_name, p.default_image, p.quantity, p.sale_price, c.category_name
+        FROM products AS p
+        LEFT JOIN categories AS c ON p.category_id = c.category_id
+    ";
+
+    if ($search) {
+        $query .= " WHERE p.product_name LIKE ? OR c.category_name LIKE ?";
+    }
+
+    $stmt = $conn->prepare($query);
+
+    if ($search) {
+        $searchParam = '%' . $search . '%';
+        $stmt->bind_param("ss", $searchParam, $searchParam);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
     return $result;
 }
+
 
 function getProductById($productId)
 {
@@ -89,7 +108,8 @@ function updateProductQuantity($productId, $quantity)
     $st->closse();
 }
 
-function getProductByCategoryId($categoryId){
+function getProductByCategoryId($categoryId)
+{
     $conn = getConnection();
     $sql = "SELECT * FROM products WHERE category_id = $categoryId";
     $result = $conn->query($sql);

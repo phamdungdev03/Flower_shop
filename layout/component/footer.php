@@ -16,7 +16,7 @@
     </div>
     <div class="footer__column">
         <h4 class="footer__title">Thông Tin Liên Hệ</h4>
-        <p>Địa chỉ: 123 Đường Hoa, Quận 1, TP. HCM</p>
+        <p>Địa chỉ: Lĩnh Nam, Hoàng Mai, Hà Nội</p>
         <p>Điện thoại: (0123) 456-789</p>
         <p>Email: info@hoatuoi.vn</p>
     </div>

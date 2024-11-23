@@ -1,13 +1,24 @@
 <?php
 include(__DIR__ . '/../../config/database.php');
 
-function getAllUsers($userId)
+function getAllUsers($user_id, $search = '')
 {
     $conn = getConnection();
-    $sql = "SELECT * FROM accounts where account_id != $userId";
-    $result = $conn->query($sql);
-    return $result;
+    $sql = "SELECT * FROM accounts WHERE account_id != ?";
+    if (!empty($search)) {
+        $sql .= " AND (full_name LIKE ? OR email LIKE ?)";
+    }
+    $stmt = $conn->prepare($sql);
+    if (!empty($search)) {
+        $searchParam = '%' . $search . '%';
+        $stmt->bind_param('iss', $user_id, $searchParam, $searchParam);
+    } else {
+        $stmt->bind_param('i', $user_id);
+    }
+    $stmt->execute();
+    return $stmt->get_result();
 }
+
 
 function getUserById($userId)
 {
